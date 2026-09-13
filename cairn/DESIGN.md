@@ -28,10 +28,11 @@ PDF; each arrives with its own milestone.
 
 ## Conventions
 
-- **Numeric work needs oracle verification (greenfield opener, 2026-09-10):**
+- **Paper numbers come from committed scripts (greenfield opener, 2026-09-10; heading corrected M003):**
   every number the paper reports is produced by a committed script run against
-  a named `intraclass` version, never transcribed by hand; the package's own
-  oracle-verified test values are the source of any comparison figure.
+  a named `intraclass` version, never transcribed by hand. A comparison figure
+  comes from `analysis/comparison.R`, which runs intraclass and the compared
+  packages at the versions its results file records (corrected M003, D-001).
 - The paper text is licensed CC BY 4.0 (`LICENSE.md`).
 - JOSS's co-location rule is met at submission by copying `paper/` onto a
   never-merged `joss-paper` branch of the package repository (package
