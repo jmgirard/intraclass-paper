@@ -1,13 +1,13 @@
 # M002: A push that changes the paper builds a JOSS draft PDF
 
-- **Status:** planned
+- **Status:** in-progress
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
 - **Principles touched:** —
 - **Resolves:** —
 - **Surface tier:** internal — authoring tooling that only the maintainer uses to see the rendered draft
-- **Branch/PR:** —
+- **Branch/PR:** `m002-draft-pdf-workflow`
 
 ## Goal
 
@@ -31,12 +31,14 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 
 ## Tasks
 
-- [ ] T1: Write `.github/workflows/draft-pdf.yml` from the draft action README (checkout, draft action, upload-artifact), with the `workflow_dispatch` trigger and the `paper/**` and workflow-file path filters.
+- [x] T1: Write `.github/workflows/draft-pdf.yml` from the draft action README (checkout, draft action, upload-artifact), with the `workflow_dispatch` trigger and the `paper/**` and workflow-file path filters.
 - [ ] T2: Push the branch, find or start the run on the head SHA, download the artifact, and run the title check. Update the Architecture line in `cairn/DESIGN.md` and the `verify` slot in `cairn/PROFILE.md` to name the workflow and the manual-run command.
 
 ## Work log
 
 - 2026-09-13: created by /milestone-plan. It absorbs the candidate row "Draft-PDF workflow".
 - 2026-09-13: criteria audit (reduced mode, fresh Opus reader) returned 2 findings for AC2. A run on a tracking-only head needs a manual trigger, and the wrapped PDF title needs whitespace squeezing. Both were fixed in the wording above.
+- 2026-09-13: implement started on branch `m002-draft-pdf-workflow`. Question gate skipped because nothing was open.
+- 2026-09-13: T1 done. The workflow follows the action README, with checkout and upload-artifact at `@v7` and the draft action at `@master`.
 
 ## Decisions
