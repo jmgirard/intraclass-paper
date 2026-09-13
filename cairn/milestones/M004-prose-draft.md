@@ -139,3 +139,4 @@
 - B1: the outline's point that bootstrap and posterior intervals can be selected is gone from Software design, and it was never triaged. Proposed: fix now, one sentence from the `R/icc.R` `ci_method` docs.
 - B2: the capability matrix is not restated. Proposed: reject, the same as first-pass H3.
 - G1 (reviewer-session observation): the JOSS paper guide also asks for a mention of past or ongoing research projects that use the software. Proposed: follow-up, added to the submission candidate row.
+- Gate, pass 2 (2026-09-13): the user chose "Fix first". R2, R3, R5, R6, R8, R9, and B1 were fixed on the branch as proposed. R1 joined the psych incomplete-estimates candidate row, R7 became a new candidate row, and G1 joined the submission row. R4, R10, R11, R12, R13, and B2 are rejected for the reasons given above. Approval is asked again after the re-checks.

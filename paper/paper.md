@@ -25,7 +25,7 @@ It estimates the variance components with linear mixed models instead of the mea
 The package provides the full family of interrater ICCs.
 The coefficient can measure absolute agreement or consistency, for single or average ratings, with random or fixed raters.
 The raters can be crossed with the subjects, or each subject can have its own raters.
-Each coefficient comes with an interval, by default a Monte-Carlo interval in which no drawn variance is negative.
+`icc()` can report an interval with each estimate, by default a Monte-Carlo interval in which no drawn variance is negative.
 The package handles unbalanced, incomplete, and multilevel designs, and its multilevel methods follow @tenhove2022.
 It also projects reliability to other numbers of raters with `d_study()` and recommends a coefficient for a stated design with `choose_icc()`.
 
@@ -58,7 +58,7 @@ Several R packages compute ICCs.
 irr [@irr] computes the classical agreement and consistency ICCs for single and average ratings, and it omits missing data listwise.
 psych [@psych] computes the ICCs that @shrout1979 define, with confidence limits.
 By default, psych fits them with `lmer()` from lme4 [@lme4], which handles missing values.
-On the `ratings_incomplete` example, psych used all 6 subjects.
+On the `ratings_incomplete` example, psych reported 6 subjects.
 irrICC [@irrICC] computes the ICCs for inter-rater and intra-rater reliability that the handbook of @gwet2014 describes, under analysis-of-variance models.
 performance [@performance] computes an ICC, which its manual also calls a variance partition coefficient.
 It works from a mixed-effects model that the user fitted.
@@ -82,20 +82,20 @@ Four estimation engines sit behind the `engine` argument of `icc()`: glmmTMB [@g
 glmmTMB is the default and the only engine that intraclass imports.
 The other engines are suggested packages.
 glmmTMB estimates each variance component on a log standard-deviation scale, where the parameter has no lower bound.
-lme4 fits the same restricted maximum likelihood model, and the tests use it as an independent check on the default.
+lme4 fits the same restricted maximum likelihood model, and the tests fit lme4 directly as an independent check on the default.
 
 With the frequentist engines, the default interval draws the variance parameters on that log scale.
-It transforms the draws back, so each drawn variance is positive.
+It transforms the draws back, so each variance drawn on that scale is positive.
 Any negative draw of a rater variance computed from drawn rater means is set to zero.
-Near the boundary this interval can fail, and `icc()` then stops with an error and returns no interval.
-Before it stops, the package tries other interval methods that the design allows on the same data.
+A user can choose other interval methods, such as a parametric bootstrap, with the `ci_method` argument, and brms fits give a posterior credible interval.
+Near the boundary the default interval can fail, and `icc()` then stops with an error and returns no interval.
+Before it stops, the package runs some of the interval methods that the design allows on the same data.
 The error message names only a method that gave a usable interval.
 Some designs do not identify the model, for example ratings that split into groups with no subject or rater in common.
 Such a design stops with a classed error condition that names the problem.
 
-Each coefficient that the package reports has a published definition.
 The test suite checks each estimator against independent oracles of several types.
-A standing test matrix covers each combination of coefficient and engine.
+A standing test matrix covers each combination of coefficient and frequentist engine.
 It checks that the frequentist engines agree on point estimates and that every documented engine refusal occurs.
 
 The output never labels a coefficient as poor, good, or excellent.
