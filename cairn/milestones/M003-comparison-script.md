@@ -56,6 +56,8 @@
 - 2026-09-13: amendment return: AC3 — "with non-integer values written to 6 significant digits, trailing zeros kept, and integer counts written as whole numbers". The results file changed in one row, so the AC1 and AC3 evidence must run again at re-review. Status set to in-progress.
 - 2026-09-13: implement resumed on the branch for the AC3 amendment. origin/main is already in the branch.
 - 2026-09-13: re-audit: AC3 (full) — two findings. "Values" also covers the version and repository rows, so `version_irr` 0.85 fails the 6-digit rule. "Integer counts" leaves whole-number results that are not counts unbound. The amendment also widens AC3, because it adds the trailing-zero promise.
+- 2026-09-13: the AC3 mini gate chose "with numeric values other than the `version_` and `repository_` rows written to at most 6 significant digits", which adds no promise.
+- 2026-09-13: re-audit: AC3 (full) — two findings. "At most 6" sets no lower limit, so a value cut to one digit passes. "The other rows are" closes the row list at 26 names and leaves out the 5 AC2 rows, which the old wording also did. This is the second AC3 re-audit, so further AC3 wording goes to the maintainer without a reader.
 
 ## Decisions
 
