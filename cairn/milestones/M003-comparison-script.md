@@ -38,7 +38,7 @@
 - [x] T1: Reinstall intraclass 0.1.0 from CRAN and confirm that `packageDescription("intraclass")$Repository` is `CRAN`.
 - [x] T2: Write `analysis/comparison.R`, adapted from `intraclass/vignettes/comparison-with-other-packages.Rmd` (the validation, irrICC, and incomplete-data chunks). Use a hard `stop()` for missing packages, point estimates only, `signif(x, 6)`, and a fixed row order.
 - [x] T3: Run the script, commit the results file, run it again, and confirm `git diff --exit-code`.
-- [ ] T4: Update the three outline bullets from the results file.
+- [x] T4: Update the three outline bullets from the results file.
 
 ## Work log
 
@@ -49,5 +49,6 @@
 - 2026-09-13: T1 done. The installed intraclass was a local build with no Repository field. `install.packages("intraclass")` from CRAN gave version 0.1.0, Repository CRAN.
 - 2026-09-13: T2 done. The first run stopped because the one-way average term in intraclass 0.1.0 is `ICC(k)`, not `ICC(1,k)`, so the script now stops when a term is not one row. A run with `requireNamespace` masked to fail for each of the four packages in turn exited 1 with that package named.
 - 2026-09-13: T3 done. The results file is committed with 31 rows. A second run exited 0, changed the file time, and left `git diff --exit-code` at 0.
+- 2026-09-13: T4 done in 96afecf. The three bullets give 7e-6, 6e-6, and 2, each from its row. Draft-PDF run 34779506540 passed, and its PDF text holds the gap bullet. The T4 tick went in a later commit, because 96afecf was already pushed.
 
 ## Decisions
