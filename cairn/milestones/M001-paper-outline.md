@@ -70,6 +70,7 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 - 2026-09-13: author kept as "Jeffrey M. Girard" by the implement gate. The package inst/CITATION still says "Jeffrey Girard".
 - 2026-09-13: status set to review.
 - 2026-09-13: review gate triage: F1, F2, F3, F5, and F6 fixed in paper/paper.md, F4 and the vignette error sent to candidate rows, F7 and F8 rejected.
+- 2026-09-13: step-7 approval: m001-paper-outline approved for merge
 
 ## Decisions
 
