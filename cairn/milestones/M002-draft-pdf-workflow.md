@@ -46,6 +46,8 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 - 2026-09-13: T2 done. DESIGN Architecture and the PROFILE `verify` slot name the workflow and the manual-run command.
 - claim audit: not owed — internal tier
 - 2026-09-13: implement complete, status set to review.
+- 2026-09-13: review fix-now work for F1, F3, F4 and F5 applied at the gate. AC2 is re-run on the pushed head.
+- step-7 approval: m002-draft-pdf-workflow approved for merge
 
 ## Decisions
 
@@ -64,4 +66,12 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
   - F6: tag pushes ignore the `paths` filter, so each release tag starts one build.
   - F7: no `concurrency` or `timeout-minutes`, so quick pushes each build and a hung build runs up to 6 hours.
   - F8: the AC2 title match comes from the page-1 citation block. If the template changes, the check can fail on a good PDF.
-- Triage: none of the findings shows a criterion failing, so the return floor does not apply. Dispositions are set at the approval gate.
+- Triage: none of the findings shows a criterion failing, so the return floor does not apply. The maintainer set these dispositions at the approval gate:
+  - F1 fix now: the upload step sets `if-no-files-found: error`.
+  - F2 rejected: `@master` stays because the draft action README uses it and JOSS builds with it.
+  - F3 fix now: the workflow sets `permissions: contents: read`.
+  - F4 fix now: the PROFILE `verify` recipe adds `gh run list --commit` and `gh run watch` steps.
+  - F5 fix now: DESIGN says a manual run works on a branch that contains the workflow file.
+  - F6 rejected: a tag push costs one build of about 45 seconds.
+  - F7 rejected: the builds are short, and a hung build is unlikely to go unnoticed on a one-person repo.
+  - F8 rejected: AC2 is verified for this milestone, and a later template change shows up as a failed check that a person reads.
