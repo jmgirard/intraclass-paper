@@ -76,6 +76,8 @@
 - claim audit: 51 claims read, 3 corrected — paper/paper.md
 - 2026-09-13: the three corrected claims: the boundary fallback tries some allowed methods in tiers, not all of them. The fixed-rater variance draw is floored at zero by `pmax`, not non-negative by construction. performance's `insight::get_variance()` scope clause was dropped, because its manual warns that brms models can fail. The reader re-read its wording once, and the performance sentence keeps only that wording's first sentence. The reader had no artifact to check the AI-review sentence against, and that sentence stays as the outline's maintainer-sourced wording. After the fix: words 1058, number, AC1, and citation checks unchanged.
 - 2026-09-13: T7 done: draft PDF run 34784517923 on 4aba62b (the audited prose) succeeded with a 3-page PDF. Status set to review.
+- 2026-09-13: review pass 2: all six criteria verified, no return. The gate chose "Fix first", and seven wording fixes landed before approval was asked again.
+- step-7 approval: m004-prose-draft approved for merge
 
 ## Decisions
 
