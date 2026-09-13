@@ -45,7 +45,7 @@
 
 - [x] T1: In `analysis/comparison.R`, add the 12 incomplete-data estimate rows and the `incomplete_psych_k` row, and replace the `icc2.inter.fn` rows with `icc2.nointer.fn` rows. Rerun the script and commit the results file.
 - [x] T2: In a separate R session, recompute the 15 values as AC2 states, and compare them to the committed rows. Record the comparison in the work log.
-- [ ] T3: Rewrite the State of the field sentences on `ratings_incomplete` and irrICC from the new rows, and remove the "psych reported 6 subjects" sentence. Take each divisor from its results row, and read the psych 2.6.5 `ICC` manual and the intraclass 0.1.0 `icc` manual for the sentence around it (M001 and M004 lessons).
+- [x] T3: Rewrite the State of the field sentences on `ratings_incomplete` and irrICC from the new rows, and remove the "psych reported 6 subjects" sentence. Take each divisor from its results row, and read the psych 2.6.5 `ICC` manual and the intraclass 0.1.0 `icc` manual for the sentence around it (M001 and M004 lessons).
 - [ ] T4: Run the number, citation, word-count, and package-claim checks, fix what they find, and record the number ledger in the work log.
 - [ ] T5: Push the branch and confirm the draft-PDF run on the head SHA.
 
@@ -61,6 +61,7 @@
 - 2026-09-13: implement started on branch m005-incomplete-comparison. Question gate skipped, because the plan left no implementation choice open.
 - 2026-09-13: T1 done. The script writes the 15 rows and exits 0, and `grep -c 'icc2.inter.fn'` prints 0. `incomplete_psych_k` is 4.00000.
 - 2026-09-13: T2 done. A separate R session used its own matrix reshape and `uniroot()` for the Spearman-Brown k. It matched all 15 committed rows at 6 significant digits.
+- 2026-09-13: T3 done. State of the field now says which of the six coefficients agree and gives the divisors 4 and 3.27. The irrICC sentence names the model without interaction. The divisor wording follows the psych `ICC` manual ("means of k raters") and the intraclass `ratings_incomplete` manual (harmonic mean `k_eff`).
 
 ## Decisions
 
