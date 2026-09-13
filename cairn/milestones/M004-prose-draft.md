@@ -1,6 +1,6 @@
 # M004: The paper is drafted as prose within JOSS's length limit
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** M002, M003
 - **Driving RR:** —
@@ -45,7 +45,7 @@
 - [x] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
 - [x] T5: Push the branch and confirm the draft-PDF run on the head SHA.
 - [x] T6: Fix the review findings triaged fix-now (Review section: F1, F2 through F1, F3, F6 to F11, F14 with H1, F15, F16, F17, F19). Read the package source or manual for each new claim, and add bib entries for Shrout and Fleiss and for Gwet's handbook.
-- [ ] T7: Re-run the AC1 to AC5 checks on the fixed text, and confirm the draft-PDF run on the new head SHA.
+- [x] T7: Re-run the AC1 to AC5 checks on the fixed text, and confirm the draft-PDF run on the new head SHA.
 
 ## Work log
 
@@ -74,7 +74,8 @@
 - 2026-09-13: T6: review fixes landed. F7, F8, F10, and F17 rest on the intraclass v0.1.0 source (`R/engine-glmmtmb.R`, `R/ci-montecarlo.R`, `R/engine-lavaan.R`, `R/boundary-hint.R`, DESCRIPTION). F10 also rests on the floor at 0 in `theta2r_moment_draws()`. F14 rests on the performance 0.17.1 `icc` manual, and F19 on the irrICC 1.0 `icc2.inter.fn` manual. The Shrout and Fleiss entry matches Crossref, and the Gwet entry matches the irrICC manual. F1 removed the unlimited agreement sentence, and F16 removed the mean-squares sentence. F9 now claims a published definition for each coefficient, F11 says "interval", and F3 uses the outline wording. The CRAN DOIs for intraclass and psych resolve. After the fix: words 1061, 12 citation keys equal the bib keys, and no citeproc warning. The number hits add only the years 1979 and 2014.
 - 2026-09-13: T7: draft PDF run 34784176245 on 0ea9ffc succeeded, but "Shrout and Fleiss (Shrout & Fleiss, 1979)" repeated the names. Both new citations became in-text (ea507cc), and run 34784253351 on that SHA succeeded with a 3-page PDF.
 - claim audit: 51 claims read, 3 corrected — paper/paper.md
-- 2026-09-13: the three corrected claims: the boundary fallback tries some allowed methods in tiers, not all of them. The fixed-rater variance draw is floored at zero by `pmax`, not non-negative by construction. performance's `insight::get_variance()` scope clause was dropped, because its manual warns that brms models can fail. The reader re-read its wording once, and the performance sentence keeps only that wording's first sentence. The reader could not check the AI-review sentence against an artifact, and it stays as the outline's maintainer-sourced wording. After the fix: words 1058, number, AC1, and citation checks unchanged.
+- 2026-09-13: the three corrected claims: the boundary fallback tries some allowed methods in tiers, not all of them. The fixed-rater variance draw is floored at zero by `pmax`, not non-negative by construction. performance's `insight::get_variance()` scope clause was dropped, because its manual warns that brms models can fail. The reader re-read its wording once, and the performance sentence keeps only that wording's first sentence. The reader had no artifact to check the AI-review sentence against, and that sentence stays as the outline's maintainer-sourced wording. After the fix: words 1058, number, AC1, and citation checks unchanged.
+- 2026-09-13: T7 done: draft PDF run 34784517923 on 4aba62b (the audited prose) succeeded with a 3-page PDF. Status set to review.
 
 ## Decisions
 
