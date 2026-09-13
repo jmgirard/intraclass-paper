@@ -24,7 +24,7 @@ Word budget: 150
 - intraclass [@intraclass] is an R package that estimates interrater-reliability intraclass correlation coefficients (ICCs) within generalizability theory. [src: intraclass/DESCRIPTION]
 - It estimates variance components from linear mixed models instead of classical ANOVA mean squares. [src: intraclass/DESCRIPTION]
 - It covers the full ICC family: agreement or consistency, single or average, fixed or random raters, one-way or two-way. [src: intraclass/DESCRIPTION]
-- Every coefficient comes with a boundary-aware Monte-Carlo confidence interval. [src: intraclass/README.Rmd]
+- Each coefficient comes with a confidence interval, by default a boundary-aware Monte-Carlo interval. [src: intraclass/cairn/DESIGN.md]
 - It handles imbalanced, incomplete, and multilevel designs, and its multilevel methods follow ten Hove, Jorgensen, and van der Ark [@tenhove2022]. [src: intraclass/DESCRIPTION]
 - It projects reliability to other numbers of raters with `d_study()` and helps users choose a coefficient with `choose_icc()`. [src: intraclass/README.Rmd]
 
@@ -43,12 +43,13 @@ Word budget: 250
 # State of the field
 
 Word budget: 250
-- psych [@psych] and irr [@irr] compute the classical ICC family from ANOVA mean squares and assume balanced, complete data. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+- irr [@irr] computes the classical ICC family from ANOVA mean squares and needs balanced, complete data. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+- psych [@psych] computes the Shrout and Fleiss ICCs and by default fits them with `lme4::lmer`, which allows missing ratings. [src: https://search.r-project.org/CRAN/refmans/psych/html/ICC.html]
 - irrICC [@irrICC] implements Gwet's ICCs by a moment method and can fit incomplete data with its own model. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - performance [@performance] returns a variance-partition coefficient, not the interrater ICC family or its agreement and consistency framing. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - The largest gap between intraclass and psych or irr on the balanced `ratings` data is a figure for a committed script. [src: to gather]
 - intraclass's ICC(A,1) reproduces the two-way random agreement coefficient of irrICC. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- A capability matrix contrasts the four packages on incomplete data, multilevel reliability, boundary-aware intervals, fixed or random rater framing, and selection guidance. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+- A capability matrix contrasts psych, irr, irrICC, and intraclass on incomplete data, multilevel reliability, boundary-aware intervals, fixed or random rater framing, and selection guidance. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - psych and irr remain the right tools for balanced, complete designs that need only the classic coefficients. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 
 # Software design
@@ -63,7 +64,7 @@ Word budget: 350
 - The default interval draws Monte-Carlo samples from the parameter covariance on the engine's log scale, so it is boundary-aware by construction. [src: intraclass/cairn/DESIGN.md]
 - Bootstrap and posterior intervals are selectable, and one documented policy states how each interval method treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
 - Ill-posed designs fail loudly through classed error conditions. [src: intraclass/cairn/DESIGN.md]
-- Every estimator traces to a published primary source and agrees with at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
+- Every estimator traces to a published primary source and agrees with at least two independent types of oracle. [src: intraclass/cairn/DESIGN.md]
 - A standing test matrix pins frequentist point-estimate agreement across the estimand-by-engine grid and checks every documented engine refusal. [src: intraclass/cairn/DESIGN.md]
 - Output never labels an ICC as poor, good, or excellent, and guidance covers which coefficient to report. [src: intraclass/cairn/DESIGN.md]
 
@@ -79,8 +80,8 @@ Word budget: 150
 
 Word budget: 100
 - Generative AI (Claude Code) helped write the software, the documentation, and this paper. [src: maintainer]
-- The maintainer reviewed every change before it reached the default branch. [src: maintainer]
-- Numerical correctness rests on tests that check each estimator against at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
+- The maintainer reviewed each milestone and bug fix before it was merged. [src: maintainer]
+- Numerical correctness rests on tests that check each estimator against at least two independent types of oracle. [src: intraclass/cairn/DESIGN.md]
 
 # Acknowledgements
 

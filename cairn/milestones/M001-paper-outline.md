@@ -69,6 +69,7 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 - 2026-09-13: claim-audit corrections: tenhove2022 scoped to multilevel methods and "raters nested" fixed to "subjects nested". One bullet was split to keep one marker each. Four Software design bullets were narrowed to their sources, and the psych note is 2.6.5. The reader's re-read found all ten supported, and an install-check clause that README does not state was dropped. AC3 and AC4 re-run clean, budget total still 1300.
 - 2026-09-13: author kept as "Jeffrey M. Girard" by the implement gate. The package inst/CITATION still says "Jeffrey Girard".
 - 2026-09-13: status set to review.
+- 2026-09-13: review gate triage: F1, F2, F3, F5, and F6 fixed in paper/paper.md, F4 and the vignette error sent to candidate rows, F7 and F8 rejected.
 
 ## Decisions
 
@@ -93,3 +94,9 @@ Evidence gathered 2026-09-13 on branch head eefe6a0; `main` had not moved since 
   - F6: Software design and AI usage disclosure, "at least two independent oracles". The package DESIGN.md says two oracle types, and the brms oracle runs offline against committed fixtures.
   - F7: `paper/paper.bib` intraclass author "Jeffrey M. Girard" differs from the package `inst/CITATION` "Jeffrey Girard". The implement gate chose this, and the work log records it.
   - F8: `paper/paper.bib` psych note says 2.6.5, but `citation("psych")` prints 2.6.4. The installed version is 2.6.5, so the bib is correct.
+- Triage (maintainer, 2026-09-13):
+  - F1: fixed now. The bullet is split: irr keeps the vignette claim, and psych cites its ICC help page, which says `lmer` is the default and allows missing data. A follow-up candidate row covers the vignette.
+  - F2, F3, F5, F6: fixed now. The disclosure says each milestone and bug fix was reviewed before merge. The Summary names the Monte-Carlo interval as the default. The matrix bullet names its four packages. Both oracle bullets say types of oracle.
+  - F4: follow-up. The claim is added to the existing drafting candidate row.
+  - F7, F8: rejected. The name form is a logged implement-gate choice, and the bib's psych version is the installed one.
+- Re-check after the fixes: AC3 prints bullet counts 6, 8, 8, 12, 4, 3, 1, then `0 0`, and total 1300. The AC4 grep prints nothing, with no two-marker lines. The new psych URL returns HTTP 200. The AC5 key sets stay equal at 10 keys, and the AC7 section keys are unchanged. The file is still ASCII with LF endings.
