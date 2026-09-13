@@ -21,8 +21,8 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 
 ## Acceptance criteria
 
-- [ ] AC1: `.github/workflows/draft-pdf.yml` runs `openjournals/openjournals-draft-action` with `journal: joss` and `paper-path: paper/paper.md`. It uploads `paper/paper.pdf` as an artifact named `paper`. It triggers on `workflow_dispatch` and on pushes that change `paper/**` or the workflow file.
-- [ ] AC2: A run of that workflow on the milestone branch head SHA (a push run, or one started with `gh workflow run draft-pdf.yml --ref <branch>`) concludes `success`. `gh run download <run-id> -n paper` retrieves a `paper.pdf`. The output of `pdftotext -raw -l 1 paper.pdf -`, with all whitespace squeezed to single spaces, contains the `title:` value from `paper/paper.md` squeezed the same way.
+- [x] AC1: `.github/workflows/draft-pdf.yml` runs `openjournals/openjournals-draft-action` with `journal: joss` and `paper-path: paper/paper.md`. It uploads `paper/paper.pdf` as an artifact named `paper`. It triggers on `workflow_dispatch` and on pushes that change `paper/**` or the workflow file.
+- [x] AC2: A run of that workflow on the milestone branch head SHA (a push run, or one started with `gh workflow run draft-pdf.yml --ref <branch>`) concludes `success`. `gh run download <run-id> -n paper` retrieves a `paper.pdf`. The output of `pdftotext -raw -l 1 paper.pdf -`, with all whitespace squeezed to single spaces, contains the `title:` value from `paper/paper.md` squeezed the same way.
 
 ## Coverage
 
@@ -48,3 +48,10 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 - 2026-09-13: implement complete, status set to review.
 
 ## Decisions
+
+## Review
+
+- Sync: `origin/main` is `db5b480`, the branch merge base. The default branch did not move, so no merge was needed.
+- AC1 evidence (2026-09-13): a YAML parse of `.github/workflows/draft-pdf.yml` shows the triggers `workflow_dispatch` and `push` with paths `paper/**` and `.github/workflows/draft-pdf.yml`. The steps are checkout, `openjournals/openjournals-draft-action@master` with `journal: joss` and `paper-path: paper/paper.md`, and `upload-artifact` with `name: paper` and `path: paper/paper.pdf`. PASS.
+- AC2 evidence (2026-09-13): manual run 34778819323 on head `8365aad` concluded `success`. `gh run download 34778819323 -n paper` retrieved `paper.pdf` (211150 bytes). The squeezed `pdftotext -raw -l 1` output contains the squeezed title "intraclass: Modern intraclass correlation coefficients for interrater reliability in R". The same title with `XYZ` appended does not match. PASS. The later review commits change only `cairn/`, so the built files are the same at the merged head.
+- Consistency gate (2026-09-13): `cairn_validate.py` exit 0, all checks passed. No principle changed, so `cairn_impact` was skipped. The `generic` profile names no toolchain checks.
