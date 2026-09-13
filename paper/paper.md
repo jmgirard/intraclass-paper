@@ -88,7 +88,8 @@ lme4 fits the same restricted maximum likelihood model, and the tests use it as 
 The default interval simulates draws from the fitted parameter covariance on the log scale of the engine.
 It then transforms the draws back, so each draw keeps the variances positive.
 Near the boundary this interval can fail.
-The error then names an opt-in method that the package ran on the same data and found to give a usable interval.
+The package then runs the opt-in methods that the design allows on the same data.
+The error names a method only if that method gives a usable interval.
 Some designs do not identify the model, for example ratings that split into groups with no subject or rater in common.
 Such a design stops with a classed error condition that names the problem.
 
