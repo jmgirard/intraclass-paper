@@ -1,13 +1,13 @@
 # M004: The paper is drafted as prose within JOSS's length limit
 
-- **Status:** planned
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** M002, M003
 - **Driving RR:** —
 - **Principles touched:** —
 - **Resolves:** —
 - **Surface tier:** user-facing — the text that is submitted to JOSS and published there
-- **Branch/PR:** —
+- **Branch/PR:** m004-prose-draft
 
 ## Goal
 
@@ -21,29 +21,31 @@
 
 ## Acceptance criteria
 
-- [ ] AC1: `awk '/^# Research impact statement/{s=1;next} /^# /{s=0} !s' paper/paper.md | grep -n -E '\[src:|^Word budget:'` prints nothing. The Acknowledgements section has no line that starts with `- `.
-- [ ] AC2: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750. This count includes headings and excludes the front matter and the reference list.
-- [ ] AC3: Below the front matter of `paper/paper.md`, each number found by `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'` or by `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'` is one of these: a value in `analysis/comparison-results.csv` at the rounding the paper shows, a year, a version number, part of a coefficient label such as ICC(A,1), a count of items that the same sentence names, or part of an author name ("ten Hove").
-- [ ] AC4: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` prints no citation-not-found warning.
-- [ ] AC5: Each sentence in the Statement of need and State of the field sections that describes the behavior of psych, irr, irrICC, or performance states only behavior that `analysis/comparison-results.csv` shows, or that the reference manual of the version recorded in that file documents.
-- [ ] AC6: A run of the draft-PDF workflow on the milestone branch head SHA concludes `success`.
+- [x] AC1: `awk '/^# Research impact statement/{s=1;next} /^# /{s=0} !s' paper/paper.md | grep -n -E '\[src:|^Word budget:'` prints nothing. The Acknowledgements section has no line that starts with `- `.
+- [x] AC2: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750. This count includes headings and excludes the front matter and the reference list.
+- [x] AC3: Below the front matter of `paper/paper.md`, each number found by `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'` or by `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'` is one of these: a value in `analysis/comparison-results.csv` at the rounding the paper shows, a year, a version number, part of a coefficient label such as ICC(A,1), a count of items that the same sentence names, part of an author name ("ten Hove"), or the digit in the package name lme4 wherever that name appears, including code spans and the `@lme4` citation key.
+- [x] AC4: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` prints no citation-not-found warning.
+- [x] AC5: Each sentence in the Statement of need and State of the field sections that describes the behavior of psych, irr, irrICC, or performance, or that recommends one of them, states, for each of those packages it names, only behavior that `analysis/comparison-results.csv` at the branch head shows or that the package's own reference manual documents. For psych, irr, and irrICC, the manual is the one for the version recorded in that file. For performance, it is the one for version 0.17.1. A sentence that says one of these packages lacks a feature passes only if that manual states the limit in words.
+- [x] AC6: A run of the draft-PDF workflow on the milestone branch head SHA concludes `success`.
 
 ## Coverage
 
-- AC1 → T2, T3
-- AC2 → T2, T4
-- AC3 → T2, T4
-- AC4 → T4
-- AC5 → T2, T4
-- AC6 → T5
+- AC1 → T2, T3, T7
+- AC2 → T2, T4, T7
+- AC3 → T2, T4, T7
+- AC4 → T4, T6, T7
+- AC5 → T2, T4, T6, T7
+- AC6 → T5, T7
 
 ## Tasks
 
-- [ ] T1: At the start gate, get the acknowledgements text (people and funding) from the maintainer.
-- [ ] T2: Turn the outline bullets of Summary, Statement of need, State of the field, and Software design into prose. Take each figure from `analysis/comparison-results.csv`, and run any function whose behavior a sentence states (M001 lesson).
-- [ ] T3: Write the AI usage disclosure and Acknowledgements prose, and delete the `Word budget:` lines and `[src:]` markers outside Research impact.
-- [ ] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
-- [ ] T5: Push the branch and confirm the draft-PDF run on the head SHA.
+- [x] T1: At the start gate, get the acknowledgements text (people and funding) from the maintainer.
+- [x] T2: Turn the outline bullets of Summary, Statement of need, State of the field, and Software design into prose. Take each figure from `analysis/comparison-results.csv`, and run any function whose behavior a sentence states (M001 lesson).
+- [x] T3: Write the AI usage disclosure and Acknowledgements prose, and delete the `Word budget:` lines and `[src:]` markers outside Research impact.
+- [x] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
+- [x] T5: Push the branch and confirm the draft-PDF run on the head SHA.
+- [x] T6: Fix the review findings triaged fix-now (Review section: F1, F2 through F1, F3, F6 to F11, F14 with H1, F15, F16, F17, F19). Read the package source or manual for each new claim, and add bib entries for Shrout and Fleiss and for Gwet's handbook.
+- [x] T7: Re-run the AC1 to AC5 checks on the fixed text, and confirm the draft-PDF run on the new head SHA.
 
 ## Work log
 
@@ -51,5 +53,93 @@
 - 2026-09-13: criteria audit (full mode, fresh Opus reader) returned 8 findings. The section exclusion had no procedure, the placeholder text had no rule, the word count was undefined, the number grep missed number words and scientific notation, the number exemption was open, the bib check had no procedure, the package-claim check read lines instead of sentences, the manual version was not pinned, and the workflow trigger was missing. All were fixed in the wording above, and the gate settled the three judgment calls.
 - 2026-09-13: plan gate chose to leave Research impact for the submission milestone over drafting it now, because its evidence (downloads, citations) is new data that the submission row already owns. Falsified by JOSS requiring that section in the pre-submission draft.
 - 2026-09-13: plan gate chose a closed number exemption list over no exemptions, because counts such as "four engines" have no script source. Falsified by a number in the exempt classes that a reader cannot check against a named source.
+- 2026-09-13: implement started on branch m004-prose-draft, cut from main at 275def3.
+- 2026-09-13: start gate: no funding and no people to acknowledge. Performance is pinned at 0.17.1 through an AC5 amendment. Gaps are stated as rounded CSV values, not as the bound that the M003 review candidate row suggests. The AI disclosure covers package code, tests, documentation, and paper. T1 done.
+- 2026-09-13: amendment: AC5 as planned blocked every performance sentence, because the CSV records no performance version. User chose to pin performance 0.17.1.
+- re-audit: AC5 (full) — referent unclear for sentences naming several packages, "lacks a feature" claims unruled, performance version recorded only in the criterion, opinion sentences unclear. Wording revised for the first two, and the last two carried to the second reader.
+- re-audit: AC5 (full) — recommendations unclear as claims, "states the limit" vague, CSV copy unpinned, pin to be recorded in Decisions. All four fixed in the adopted wording at the mini gate (stop reached, user adopted).
+- 2026-09-13: amendment: AC3 as planned failed any mention of lme4, because its digit fits no exempt class. User adopted an lme4 exemption at the mini gate.
+- re-audit: AC3 (full) — "in prose or in its citation key" left out code spans. Wording revised to "wherever that name appears, including code spans".
+- re-audit: AC3 (full) — S3, one-way, two-way, and pronoun "one" still uncovered, grep hits carry no line numbers. Not adopted, because the draft avoids those words (stop reached, user adopted the lme4 wording).
+- 2026-09-13: T2 and T3 landed in one commit, because both write the same file. Prose written from same-session reads: the installed manuals of psych 2.6.5, irr 0.85, irrICC 1.0, and performance 0.17.1, the intraclass 0.1.0 DESCRIPTION, README, and DESIGN, and runs of `icc()`, `d_study()`, `choose_icc()`, `irr::icc()` on incomplete data (listwise, 2 subjects), and a disconnected design (`intraclass_unidentified`).
+- 2026-09-13: T4: words 1052 (pandoc plain). AC1 awk/grep empty, and no `- ` line in Acknowledgements. 10 citation keys equal the bib keys, no citeproc warning, and a planted `@lavaanX` key did raise one. The number grep flagged "Word budget: 150" in Research impact (AC3 covers that section), so that line was removed, and "agree with these packages" was narrowed to psych, irr, and irrICC, because performance has no comparison value.
+- 2026-09-13: T4 number ledger (below front matter): 2022 year (@tenhove2022). 2 = incomplete_complete_case_subjects. 20 = incomplete_intraclass_ratings. 6 (line with 20) = incomplete_intraclass_subjects. 6 (psych sentence) = incomplete_psych_subjects. 0.000007 = balanced_max_abs_gap 0.00000715543 at one significant digit. 0.000006 = irricc_abs_diff_ICCA1 0.00000625078 at one significant digit. Each 1 is in an ICC(1), ICC(A,1), or ICC(C,1) label. Each 4 is the lme4 digit (prose, `@lme4`). "three" counts `icc()`, `d_study()`, `choose_icc()` named in its sentence. "Four" counts glmmTMB, lme4, brms, lavaan named in its sentence.
+- 2026-09-13: T4 AC5 ledger: irr listwise omission (both sections) and agreement/consistency for single/average ratings = irr 0.85 manual `icc` Details and arguments. psych Shrout and Fleiss ICCs with confidence limits, `lmer()` default that handles missing data = psych 2.6.5 manual `ICC`. psych used 6 subjects = CSV. irrICC inter- and intra-rater ICCs from Gwet's handbook under ANOVA models = irrICC 1.0 package description and `icc2.inter.fn`. performance ICC also called variance partition coefficient from a fitted mixed model = performance 0.17.1 manual `icc`. Agreement figures = CSV. "psych and irr remain direct choices" for balanced complete classical designs = the irr and psych manuals above.
+- 2026-09-13: T5: pushed 7e581a9. Draft PDF run 34782970762 on that SHA concluded success, and its paper artifact is a 3-page PDF.
+- 2026-09-13: claim audit: 36 claims read, 1 corrected — paper/paper.md
+- 2026-09-13: the corrected claim is the boundary error: it names a method only when a run gives a usable interval, and it runs only the methods the design allows. The same reader re-read the fix once and supplied the final wording. After the fix: words 1058, number and citation greps unchanged.
+- 2026-09-13: draft PDF run 34783143039 on 36a297b (the corrected prose) concluded success. Status set to review.
+- 2026-09-13: review started. The branch was pushed before the approval gate, because AC6 needs a run on the head SHA. The draft-PDF workflow has only push and manual triggers, so no PR checks ran.
+- 2026-09-13: review returned M004 to in-progress (defect return 1). F1 fails AC5: line 66 claims agreement with psych, irr, and irrICC with no limit, but the CSV shows it only on balanced data. At the gate the user chose to fix every proposed fix-now finding. Requested changes are T6 and T7. All six criteria were unticked, because the fixes change the text each one reads.
+- 2026-09-13: T6: review fixes landed. F7, F8, F10, and F17 rest on the intraclass v0.1.0 source (`R/engine-glmmtmb.R`, `R/ci-montecarlo.R`, `R/engine-lavaan.R`, `R/boundary-hint.R`, DESCRIPTION). F10 also rests on the floor at 0 in `theta2r_moment_draws()`. F14 rests on the performance 0.17.1 `icc` manual, and F19 on the irrICC 1.0 `icc2.inter.fn` manual. The Shrout and Fleiss entry matches Crossref, and the Gwet entry matches the irrICC manual. F1 removed the unlimited agreement sentence, and F16 removed the mean-squares sentence. F9 now claims a published definition for each coefficient, F11 says "interval", and F3 uses the outline wording. The CRAN DOIs for intraclass and psych resolve. After the fix: words 1061, 12 citation keys equal the bib keys, and no citeproc warning. The number hits add only the years 1979 and 2014.
+- 2026-09-13: T7: draft PDF run 34784176245 on 0ea9ffc succeeded, but "Shrout and Fleiss (Shrout & Fleiss, 1979)" repeated the names. Both new citations became in-text (ea507cc), and run 34784253351 on that SHA succeeded with a 3-page PDF.
+- claim audit: 51 claims read, 3 corrected — paper/paper.md
+- 2026-09-13: the three corrected claims: the boundary fallback tries some allowed methods in tiers, not all of them. The fixed-rater variance draw is floored at zero by `pmax`, not non-negative by construction. performance's `insight::get_variance()` scope clause was dropped, because its manual warns that brms models can fail. The reader re-read its wording once, and the performance sentence keeps only that wording's first sentence. The reader had no artifact to check the AI-review sentence against, and that sentence stays as the outline's maintainer-sourced wording. After the fix: words 1058, number, AC1, and citation checks unchanged.
+- 2026-09-13: T7 done: draft PDF run 34784517923 on 4aba62b (the audited prose) succeeded with a 3-page PDF. Status set to review.
+- 2026-09-13: review pass 2: all six criteria verified, no return. The gate chose "Fix first", and seven wording fixes landed before approval was asked again.
+- step-7 approval: m004-prose-draft approved for merge
 
 ## Decisions
+
+- 2026-09-13 (implement): Claims about performance rest on the reference manual of version 0.17.1, the version installed when the prose was drafted. The comparison results file records no performance version, and the paper cites performance through its 2021 JOSS article, which names no version.
+
+## Review
+
+- AC1 (2026-09-13, cdff186): the awk/grep over the 114 lines outside Research impact printed nothing (grep exit 1). The file still holds 4 `[src:` markers, all in Research impact, so the pattern can match and the exclusion is what removes them. Acknowledgements has one line, "The author received no specific funding for this work.", and no line starting with `- `.
+- AC2 (2026-09-13, cdff186): `pandoc paper/paper.md -t plain | wc -w` with pandoc 3.11 reports 1058, inside 750 to 1750. The plain output starts at the Summary heading and holds no front matter.
+- AC3 (2026-09-13, cdff186): below the front matter the digit grep gave 16 hits and the word grep gave 2, each classified. Line 29 "2022" is the year in `@tenhove2022`. Line 48 "2", "20", "6" are `incomplete_complete_case_subjects`, `incomplete_intraclass_ratings`, `incomplete_intraclass_subjects`. Line 62 "6" is `incomplete_psych_subjects`. Line 68 "0.000007" is `balanced_max_abs_gap` 0.00000715543 at one significant digit. Line 69 "0.000006" is `irricc_abs_diff_ICCA1` 0.00000625078 at one significant digit. The four "1" hits (lines 67, 69) sit in ICC(1), ICC(A,1), ICC(C,1) labels. The five "4" hits (lines 61, 82, 86) are the lme4 digit in prose or `@lme4`. Line 76 "three" counts the three functions that sentence names. Line 82 "Four" counts the four engines that sentence names. No hit is unclassified.
+- AC4 (2026-09-13, cdff186): the paper keys and the bib entry keys are the same 10 keys: brms, glmmTMB, intraclass, irr, irrICC, lavaan, lme4, performance, psych, tenhove2022. The citeproc run printed only the output-format warning and no citation-not-found warning. A scratch copy with `@irr` changed to `@irrX` printed "citation irrX not found", so the check can fail.
+- AC5 (2026-09-13, cdff186): installed versions match the CSV (psych 2.6.5, irr 0.85, irrICC 1.0) and the pin (performance 0.17.1). Each sentence was read against a manual read this session. For irr (lines 46, 59), the `icc` Arguments list agreement and consistency for single and average units. Its Details say "Missing data are omitted in a listwise way". For psych (lines 60, 61), the `ICC` Description gives the 6 Shrout and Fleiss estimates with confidence limits. Its Arguments set `lmer = TRUE` by default, which "handles missing data". psych's 6 subjects (line 62) and the agreement figures (lines 66 to 69) are CSV rows. irrICC (line 63) computes inter-rater and intra-rater ICCs from Gwet's Handbook (package Description) under ANOVA models (`icc2.inter.fn` title). performance (line 64) computes the ICC, "sometimes also called variance partition coefficient", for mixed effects models (performance `icc` Description). Line 72 recommends psych and irr for balanced complete classical designs, which both manuals document. The only limit claim is irr's listwise omission, and the manual states it in words.
+- AC6 (2026-09-13, bb3d51f): the branch was pushed at bb3d51f (the AC1 to AC5 evidence commit, with `paper/` the same as at 36a297b). A manual draft-PDF run 34783414909 on that SHA concluded `success`, and its `paper` artifact is a 3-page PDF. The workflow has no pull-request trigger, so this pre-approval push started no PR checks. The run is repeated on the final head before merge.
+- Consistency gate (2026-09-13): `cairn_validate.py` exit 0, all checks passed. No DESIGN principle changed, so `cairn_impact` was skipped. The generic profile names no toolchain checks.
+- Independent review (2026-09-13): full three-lens fan-out, because the tier is user-facing. The diff lens [O] reported F1 to F19, the history lens [S] H1 to H3, and the prior-review lens [S] P1. GitHub holds no PR review comments. Proposed dispositions are listed here and settled at the approval gate.
+- F1 (AC5 fails, confirmed): line 66 says intraclass agrees with psych, irr, and irrICC with no limit. The CSV shows agreement only on balanced `ratings`. A same-session run on `ratings_incomplete` gave psych ICC(1) 0.116 against intraclass 0.276, ICC(k) 0.343 against 0.555, ICC(A,k) 0.570 against 0.521, and ICC(C,k) 0.872 against 0.847. Only ICC(A,1) and ICC(C,1) matched. Proposed: fix now, limit the sentence to the balanced example.
+- F2: lines 43 to 48 and 61 to 62 argue the need through irr's listwise omission. They then say psych handles missing values and used all 6 subjects, but not that its estimates differ. Proposed: fix now through the F1 wording. A claim that psych's incomplete estimates differ needs CSV rows (M003 script), so it goes to a candidate row.
+- F3: line 114 says the author approved "each change before it was merged", stronger than the maintainer-sourced outline ("each milestone and bug fix"). Proposed: fix now, restore the sourced wording.
+- F4: State of the field does not say why this is a new package and not a contribution to psych or irr. Proposed: follow-up candidate row.
+- F5: Research impact is still four `[src: to gather]` bullets. Proposed: reject, out of scope by plan and owned by the submission row.
+- F6: "Shrout and Fleiss" (line 60) and "Gwet's handbook" (line 63) have no citation or bib entry. Proposed: fix now, add both.
+- F7: line 85 says a zero-boundary fit "stays finite". The source (`R/engine-glmmtmb.R`) gives another reason: unconstrained parameters whose draws map back to positive variances. Proposed: fix now from the source.
+- F8: line 84 says users install the other engines only to use them. But lme4 arrives through glmmTMB, and the lme4 engine also needs merDeriv. Proposed: fix now, drop the clause.
+- F9: line 96 says every estimator traces to a published source. But package D-005 treats the two-level SEM route as an unsourced parameterization, and the `mpl` constant comes from the package's own simulation. Proposed: fix now, narrow the claim.
+- F10: lines 28 and 88 to 89 say every Monte-Carlo draw is on the log scale. Lavaan and fixed-rater terms are drawn on the natural scale, and whether they can go negative is not yet checked. Proposed: fix now, check the source and narrow the sentence.
+- F11: line 28 "confidence interval" does not hold under brms, which gives a credible interval. Proposed: fix now, say "interval".
+- F12: line 76 "three functions" leaves out re-exported `tidy()` and `glance()`. Proposed: reject, line 80 names both.
+- F13: line 24 "linear mixed models" covers only the default path. Proposed: reject, line 82 names the SEM and Bayesian engines.
+- F14 and H1: line 64 lists performance with no contrast, and the outline's "not the interrater ICC family" clause was dropped. AC5 allows a lack claim only if the manual states it. Proposed: fix now with a positive contrast from the manual (an ICC for any fitted mixed model), no lack claim.
+- F15: the intraclass and psych bib entries have no CRAN DOI, while irr and irrICC do. Proposed: fix now.
+- F16: line 45 on mean-squares estimators needing complete data, while irrICC returned an estimate on the incomplete matrix. Proposed: fix now, drop "need a complete set" in favor of the irr example alone.
+- F17: lines 90 to 92 can read as an automatic fallback, but the user still gets an error and no interval. Proposed: fix now, say so.
+- F18: psych's lmer ICC1 comes from crossed components, so the ICC(1) match is numeric on balanced data only. Proposed: reject, the F1 fix limits the claim to that example.
+- F19: line 69 calls irrICC `icc2r` an agreement coefficient, but its manual calls it inter-rater reliability under a random factorial model with interaction. Proposed: fix now, use the manual's name.
+- H2 and P1: lines 68 to 69 give exact rounded gaps, not the bound the M003 review candidate row suggested. Proposed: reject, the start gate chose rounded CSV values, recorded in the work log. The candidate row's first half is spent and is pruned at hygiene.
+- H3: the outline's capability matrix (fixed or random rater framing) is not restated. Proposed: reject, ordinary compression. Line 26 names random or fixed raters.
+- Floor: F1 shows AC5 failing inside its domain, so it is a defect return (the first on this milestone).
+- Gate (2026-09-13): the user chose "Return, fix all proposed". Every fix-now item above goes to T6. F4 and the F2 remainder (CSV rows for psych's incomplete estimates) become candidate rows. F5, F12, F13, F18, H2 with P1, and H3 are rejected for the reasons given above.
+- Pass 2 (after defect return 1, evidence at 46b3da5):
+- AC1 (2026-09-13, 46b3da5): the awk/grep over the 114 lines outside Research impact printed nothing (grep exit 1). The file holds 4 `[src:` markers, all in Research impact, so the exclusion is what removes them. Acknowledgements has one line, "The author received no specific funding for this work.", and no line starting with `- `.
+- AC2 (2026-09-13, 46b3da5): `pandoc paper/paper.md -t plain | wc -w` with pandoc 3.11 reports 1058, inside 750 to 1750. The plain output starts at the Summary heading, and no title, ORCID, or author line appears in it.
+- AC3 (2026-09-13, 46b3da5): below the front matter the digit grep gave 18 hits and the word grep gave 2, each classified. Years: "2022" (line 29, `@tenhove2022`), "1979" (line 59, `@shrout1979`), "2014" (line 62, `@gwet2014`). Line 47 "2", "20", "6" are `incomplete_complete_case_subjects`, `incomplete_intraclass_ratings`, `incomplete_intraclass_subjects`. Line 61 "6" is `incomplete_psych_subjects`. Line 67 "0.000007" is `balanced_max_abs_gap` 0.00000715543 at one significant digit. Line 68 "0.000006" is `irricc_abs_diff_ICCA1` 0.00000625078 at one significant digit. The four "1" hits (lines 66, 68) sit in ICC(1), ICC(A,1), ICC(C,1) labels. The five "4" hits (lines 60, 81, 85) are the lme4 digit in prose or `@lme4`. Line 75 "three" counts the three functions that sentence names, and line 81 "Four" counts the four engines that sentence names. No hit is unclassified.
+- AC4 (2026-09-13, 46b3da5): the paper keys and the bib entry keys are the same 12 keys: brms, glmmTMB, gwet2014, intraclass, irr, irrICC, lavaan, lme4, performance, psych, shrout1979, tenhove2022. The citeproc run printed only the output-format warning. A scratch copy with `@gwet2014` changed to `@gwetX` printed "citation gwetX not found", so the check can fail.
+- AC5 (2026-09-13, 46b3da5): installed versions match the CSV (psych 2.6.5, irr 0.85, irrICC 1.0) and the pin (performance 0.17.1). Each package sentence in the two sections was read against a manual read this session. irr (lines 45, 58): the `icc` arguments give agreement and consistency for single and average units, and Details say "Missing data are omitted in a listwise way". psych (lines 59, 60): the `ICC` Description says the 6 Shrout and Fleiss estimates are all implemented and given confidence limits. Its `lmer` argument defaults to TRUE and handles missing data. psych's 6 subjects (line 61) and the balanced-example figures (lines 66 to 68) are CSV rows. irrICC (line 62): the package Description names Gwet's 2014 handbook, and the function titles name ANOVA models. The line 68 name matches the `icc2.inter.fn` title and its `icc2r` value ("ICC as a measure of inter-rater reliability"). performance (lines 63, 64): the `icc` Description gives "variance partition coefficient" for mixed effects models, and its `model` argument is a fitted mixed effects model. Line 71 recommends psych and irr for balanced complete classical designs, which both manuals document. The only limit claim is irr's listwise omission, stated in words in its manual. The earlier F1 agreement sentence is gone, and no sentence claims agreement outside the balanced example.
+- AC6 (2026-09-13, 65d6d2e): the branch was pushed at 65d6d2e (the AC1 to AC5 evidence commit, with `paper/` the same as at 4aba62b). A manual draft-PDF run 34784844379 on that SHA concluded `success`, and its `paper` artifact is a 3-page PDF. The run is repeated on the final head before merge.
+- Consistency gate, pass 2 (2026-09-13): `cairn_validate.py` exit 0, all checks passed. No DESIGN principle changed, so `cairn_impact` was skipped. The generic profile names no toolchain checks.
+- Independent review, pass 2 (2026-09-13): full three-lens fan-out (user-facing tier). The diff lens [O] reported R1 to R13, and the history lens [S] reported B1 and B2. The prior-review lens [S] found no regression of any first-pass finding. GitHub holds no PR review comments. No finding shows a criterion failing, so the return floor is not met. Proposed dispositions are settled at the approval gate.
+- R1: lines 60 to 61 say psych handles missing values, so the incomplete-data need rests on irr alone. Line 70 lists incomplete-data estimation as a contrast. Proposed: follow-up, absorbed into the existing candidate row for psych's incomplete estimates.
+- R2: line 61 "psych used all 6 subjects" rests on `n.obs`, which psych 2.6.5 sets from the input rows before `lmer()` (read this session). Proposed: fix now, "psych reported 6 subjects".
+- R3: line 91 "tries other interval methods that the design allows" can read as all of them. The `R/icc.R` `ci_method` docs say the bootstrap and Monte-Carlo methods are reached only when no design-fenced method works. Proposed: fix now, "runs some of the interval methods".
+- R4: the AI disclosure names no model. Proposed: reject, because the JOSS paper guide (read this session) asks how AI was used and how its output was checked, not for a model name.
+- R5: line 28 "Each coefficient comes with an interval" conflicts with line 90 (no interval near the boundary). Line 88 "each drawn variance is positive" conflicts with the zero floor on line 89. Proposed: fix now.
+- R6: line 96 "Each coefficient ... has a published definition" overclaims, because the ragged cluster-level ICC(c,k) divides by a package-derived inverse-Simpson rater count (`R/design.R`, package ADR-057). Proposed: fix now, delete the sentence.
+- R7: line 68 compares against irrICC `icc2.inter.fn`, whose manual says it needs replicate ratings, while `ratings` has one rating per cell. Proposed: follow-up candidate row for the M003 script to compare `icc2.nointer.fn`.
+- R8: line 98 "each combination of coefficient and engine" is broader than the test. The test covers the frequentist engines and only lists brms in a roster check (`test-engine-parity-matrix.R` header). Proposed: fix now, limit to the frequentist engines.
+- R9: line 85 "the tests use it as an independent check" holds only where tests fit lme4 directly. A ragged lme4 boundary fit falls back to glmmTMB. Proposed: fix now, "the tests fit lme4 directly as an independent check".
+- R10: line 25 "the full family of interrater ICCs" is broader than the supported combinations. Proposed: reject, it matches the package DESCRIPTION.
+- R11: the `gwet2014` title lacks its subtitle. Proposed: reject, the subtitle was not found in any source read, and the ISBN identifies the book.
+- R12: Research impact is still four `[src: to gather]` bullets. Proposed: reject, the same as first-pass F5.
+- R13: the Gwet in-text form and the package bib years are correct. No defect.
+- B1: the outline's point that bootstrap and posterior intervals can be selected is gone from Software design, and it was never triaged. Proposed: fix now, one sentence from the `R/icc.R` `ci_method` docs.
+- B2: the capability matrix is not restated. Proposed: reject, the same as first-pass H3.
+- G1 (reviewer-session observation): the JOSS paper guide also asks for a mention of past or ongoing research projects that use the software. Proposed: follow-up, added to the submission candidate row.
+- Gate, pass 2 (2026-09-13): the user chose "Fix first". R2, R3, R5, R6, R8, R9, and B1 were fixed on the branch as proposed. R1 joined the psych incomplete-estimates candidate row, R7 became a new candidate row, and G1 joined the submission row. R4, R10, R11, R12, R13, and B2 are rejected for the reasons given above. Approval is asked again after the re-checks.
+- Re-check after the gate fixes (2026-09-13, 9eab746): AC1 awk/grep printed nothing, and Acknowledgements has no `- ` line. AC2 reports 1081 words. AC3 gives 20 digit hits and 2 word hits, classified as at 46b3da5, plus two lme4 digits on line 85 ("fit lme4 directly"). AC4: the same 12 keys, and no citation-not-found warning. AC5: line 61 now says "psych reported 6 subjects", which is the CSV row `incomplete_psych_subjects`, and no other package sentence changed. AC6: push-triggered draft-PDF run 34785312939 on 9eab746 concluded `success` with a 3-page PDF. `cairn_validate.py` passes.
