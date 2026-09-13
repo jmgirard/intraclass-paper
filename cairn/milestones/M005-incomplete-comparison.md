@@ -1,13 +1,13 @@
 # M005: The paper's comparison with psych and irrICC rests on script rows for incomplete data and the no-interaction model
 
-- **Status:** planned
+- **Status:** in-progress
 - **Priority:** normal
 - **Depends on:** M004
 - **Driving RR:** —
 - **Principles touched:** —
 - **Resolves:** —
 - **Surface tier:** user-facing — the paper text submitted to JOSS and the results file it cites
-- **Branch/PR:** —
+- **Branch/PR:** m005-incomplete-comparison
 
 ## Goal
 
@@ -43,7 +43,7 @@
 
 ## Tasks
 
-- [ ] T1: In `analysis/comparison.R`, add the 12 incomplete-data estimate rows and the `incomplete_psych_k` row, and replace the `icc2.inter.fn` rows with `icc2.nointer.fn` rows. Rerun the script and commit the results file.
+- [x] T1: In `analysis/comparison.R`, add the 12 incomplete-data estimate rows and the `incomplete_psych_k` row, and replace the `icc2.inter.fn` rows with `icc2.nointer.fn` rows. Rerun the script and commit the results file.
 - [ ] T2: In a separate R session, recompute the 15 values as AC2 states, and compare them to the committed rows. Record the comparison in the work log.
 - [ ] T3: Rewrite the State of the field sentences on `ratings_incomplete` and irrICC from the new rows, and remove the "psych reported 6 subjects" sentence. Take each divisor from its results row, and read the psych 2.6.5 `ICC` manual and the intraclass 0.1.0 `icc` manual for the sentence around it (M001 and M004 lessons).
 - [ ] T4: Run the number, citation, word-count, and package-claim checks, fix what they find, and record the number ledger in the work log.
@@ -58,6 +58,8 @@
 - 2026-09-13: plan gate chose to replace the interaction-model irrICC rows over keeping both, because the `icc2.inter.fn` manual says it needs replicate ratings and the paper cites only one model. Falsified by a reviewer or JOSS asking for the interaction model on single-rating data.
 - 2026-09-13: plan gate chose to explain the averaged-coefficient gap by each package's divisor over stating results only, because without it readers can assume one package is wrong. Falsified by a divisor that neither package's manual documents.
 - 2026-09-13: plan gate chose to leave the Statement of need unchanged over adding psych's incomplete-data difference to it, because the paper states facts and does not judge which package is right. Falsified by a JOSS review asking for a stronger incomplete-data need.
+- 2026-09-13: implement started on branch m005-incomplete-comparison. Question gate skipped, because the plan left no implementation choice open.
+- 2026-09-13: T1 done. The script writes the 15 rows and exits 0, and `grep -c 'icc2.inter.fn'` prints 0. `incomplete_psych_k` is 4.00000.
 
 ## Decisions
 
