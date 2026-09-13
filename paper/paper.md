@@ -61,7 +61,7 @@ By default, psych fits them with `lmer()` from lme4 [@lme4], which handles missi
 On the `ratings_incomplete` example, psych used all 6 subjects.
 irrICC [@irrICC] computes the ICCs for inter-rater and intra-rater reliability that the handbook of @gwet2014 describes, under analysis-of-variance models.
 performance [@performance] computes an ICC, which its manual also calls a variance partition coefficient.
-It works from a mixed-effects model that the user fitted, for any model that `insight::get_variance()` supports.
+It works from a mixed-effects model that the user fitted.
 
 On the balanced `ratings` example, intraclass, psych, and irr computed ICC(1), ICC(k), ICC(A,1), ICC(A,k), ICC(C,1), and ICC(C,k).
 The largest absolute difference between intraclass and either psych or irr was 0.000007.
@@ -86,9 +86,9 @@ lme4 fits the same restricted maximum likelihood model, and the tests use it as 
 
 With the frequentist engines, the default interval draws the variance parameters on that log scale.
 It transforms the draws back, so each drawn variance is positive.
-A rater variance computed from drawn rater means never falls below zero.
+Any negative draw of a rater variance computed from drawn rater means is set to zero.
 Near the boundary this interval can fail, and `icc()` then stops with an error and returns no interval.
-Before it stops, the package runs the opt-in methods that the design allows on the same data.
+Before it stops, the package tries other interval methods that the design allows on the same data.
 The error message names only a method that gave a usable interval.
 Some designs do not identify the model, for example ratings that split into groups with no subject or rater in common.
 Such a design stops with a classed error condition that names the problem.
