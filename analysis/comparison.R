@@ -4,7 +4,8 @@
 #   Rscript analysis/comparison.R
 #
 # The script writes analysis/comparison-results.csv with columns name,value.
-# Numeric values are rounded to 6 significant digits. Only point estimates are
+# Non-integer values are written to 6 significant digits, trailing zeros kept.
+# Integer counts are written as whole numbers. Only point estimates are
 # written, because interval bounds depend on Monte-Carlo draws.
 # Adapted from the vignette comparison-with-other-packages.Rmd in the
 # intraclass package (validation, irrICC, and incomplete-data chunks).
@@ -16,6 +17,20 @@ if (length(missing_pkgs) > 0) {
        paste(missing_pkgs, collapse = ", "), call. = FALSE)
 }
 
+# The paper reports figures for the CRAN release of intraclass 0.1.0.
+intraclass_version <- as.character(packageVersion("intraclass"))
+intraclass_repository <- packageDescription("intraclass")$Repository
+if (!identical(intraclass_version, "0.1.0") ||
+    !identical(intraclass_repository, "CRAN")) {
+  stop("Install intraclass 0.1.0 from CRAN; found version ",
+       intraclass_version, " from ",
+       if (is.null(intraclass_repository)) "no repository" else
+         intraclass_repository, ".", call. = FALSE)
+}
+
+# A comma decimal mark would break the comma-separated results file.
+options(OutDec = ".")
+
 library(intraclass)
 
 out_path <- file.path("analysis", "comparison-results.csv")
@@ -26,8 +41,11 @@ if (!dir.exists(dirname(out_path))) {
 results <- list()
 add <- function(name, value) {
   if (is.numeric(value)) {
-    value <- format(signif(value, 6), digits = 6, scientific = FALSE,
-                    trim = TRUE)
+    value <- if (value == round(value)) {
+      format(value, scientific = FALSE, trim = TRUE)
+    } else {
+      formatC(signif(value, 6), digits = 6, format = "fg", flag = "#")
+    }
   }
   results[[name]] <<- as.character(value)
 }

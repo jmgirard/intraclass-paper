@@ -6,7 +6,7 @@ version_irrICC,1.0
 repository_intraclass,CRAN
 balanced_intraclass_ICC1,0.165742
 balanced_intraclass_ICC1k,0.442797
-balanced_intraclass_ICCA1,0.28977
+balanced_intraclass_ICCA1,0.289770
 balanced_intraclass_ICCAk,0.620058
 balanced_intraclass_ICCC1,0.714844
 balanced_intraclass_ICCCk,0.909317

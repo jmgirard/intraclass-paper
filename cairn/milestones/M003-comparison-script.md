@@ -1,6 +1,6 @@
 # M003: A committed script produces the comparison figures the paper reports
 
-- **Status:** review
+- **Status:** in-progress
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
@@ -52,6 +52,8 @@
 - 2026-09-13: T4 done in 96afecf. The three bullets give 7e-6, 6e-6, and 2, each from its row. Draft-PDF run 34779506540 passed, and its PDF text holds the gap bullet. The T4 tick went in a later commit, because 96afecf was already pushed.
 - 2026-09-13: claim audit: 19 claims read, 1 corrected — analysis/comparison.R, analysis/comparison-results.csv, paper/paper.md. The listwise-deletion bullet cited only the CSV for its usability sentence, so it now also cites the vignette and still ends in the CSV marker. The same reader re-read it and it holds.
 - 2026-09-13: draft-PDF run 34779674826 on the audit fix passed. Status set to review.
+- 2026-09-13: review found AC1 to AC4 passing, the validator clean, and 7 findings from the diff reviewer. At the gate, the maintainer chose fixes for F2, F3, F5, and F6, and a follow-up row for F1, F4, and F7.
+- 2026-09-13: amendment return: AC3 — "with non-integer values written to 6 significant digits, trailing zeros kept, and integer counts written as whole numbers". The results file changed in one row, so the AC1 and AC3 evidence must run again at re-review. Status set to in-progress.
 
 ## Decisions
 
@@ -70,3 +72,8 @@
 - F5: `format()` drops trailing zeros, so `balanced_intraclass_ICCA1` is written as 0.28977 (5 digits shown). AC3 says "written to 6 significant digits", and the AC3 evidence line above read it as "at most 6". Integer rows such as `incomplete_intraclass_subjects` 6 also show fewer than 6 digits.
 - F6: `format()` follows `getOption("OutDec")`, so a user with a comma decimal setting gets a broken CSV.
 - F7: the listwise-deletion bullet cites the vignette passage that also holds the false claim that psych listwise-deletes. The bullet's own sentence does not repeat that claim.
+- F3 disposition: fixed now. The script stops unless intraclass is 0.1.0 from CRAN. Copies with a planted version or repository mismatch exited 1 with that message.
+- F6 disposition: fixed now. The script sets `OutDec` to a period. The old script under a comma setting wrote `0,165742`, and the new script under the same setting wrote the normal file.
+- F5 disposition: the script now writes non-integer values with trailing zeros, so `balanced_intraclass_ICCA1` is 0.289770, the only changed row. Integer counts stay whole, so AC3 needs a gated wording amendment.
+- F2 disposition: fixed now. The DESIGN.md convention now names `analysis/comparison.R` as the source of comparison figures, recorded as D-001.
+- F1, F4, F7 disposition: follow-up. One candidate row asks M004 to state the gaps as a bound and to re-check the vignette citation.
