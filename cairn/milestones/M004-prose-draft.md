@@ -1,6 +1,6 @@
 # M004: The paper is drafted as prose within JOSS's length limit
 
-- **Status:** review
+- **Status:** in-progress
 - **Priority:** normal
 - **Depends on:** M002, M003
 - **Driving RR:** —
@@ -21,21 +21,21 @@
 
 ## Acceptance criteria
 
-- [x] AC1: `awk '/^# Research impact statement/{s=1;next} /^# /{s=0} !s' paper/paper.md | grep -n -E '\[src:|^Word budget:'` prints nothing. The Acknowledgements section has no line that starts with `- `.
-- [x] AC2: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750. This count includes headings and excludes the front matter and the reference list.
-- [x] AC3: Below the front matter of `paper/paper.md`, each number found by `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'` or by `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'` is one of these: a value in `analysis/comparison-results.csv` at the rounding the paper shows, a year, a version number, part of a coefficient label such as ICC(A,1), a count of items that the same sentence names, part of an author name ("ten Hove"), or the digit in the package name lme4 wherever that name appears, including code spans and the `@lme4` citation key.
-- [x] AC4: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` prints no citation-not-found warning.
-- [x] AC5: Each sentence in the Statement of need and State of the field sections that describes the behavior of psych, irr, irrICC, or performance, or that recommends one of them, states, for each of those packages it names, only behavior that `analysis/comparison-results.csv` at the branch head shows or that the package's own reference manual documents. For psych, irr, and irrICC, the manual is the one for the version recorded in that file. For performance, it is the one for version 0.17.1. A sentence that says one of these packages lacks a feature passes only if that manual states the limit in words.
-- [x] AC6: A run of the draft-PDF workflow on the milestone branch head SHA concludes `success`.
+- [ ] AC1: `awk '/^# Research impact statement/{s=1;next} /^# /{s=0} !s' paper/paper.md | grep -n -E '\[src:|^Word budget:'` prints nothing. The Acknowledgements section has no line that starts with `- `.
+- [ ] AC2: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750. This count includes headings and excludes the front matter and the reference list.
+- [ ] AC3: Below the front matter of `paper/paper.md`, each number found by `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'` or by `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'` is one of these: a value in `analysis/comparison-results.csv` at the rounding the paper shows, a year, a version number, part of a coefficient label such as ICC(A,1), a count of items that the same sentence names, part of an author name ("ten Hove"), or the digit in the package name lme4 wherever that name appears, including code spans and the `@lme4` citation key.
+- [ ] AC4: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` prints no citation-not-found warning.
+- [ ] AC5: Each sentence in the Statement of need and State of the field sections that describes the behavior of psych, irr, irrICC, or performance, or that recommends one of them, states, for each of those packages it names, only behavior that `analysis/comparison-results.csv` at the branch head shows or that the package's own reference manual documents. For psych, irr, and irrICC, the manual is the one for the version recorded in that file. For performance, it is the one for version 0.17.1. A sentence that says one of these packages lacks a feature passes only if that manual states the limit in words.
+- [ ] AC6: A run of the draft-PDF workflow on the milestone branch head SHA concludes `success`.
 
 ## Coverage
 
-- AC1 → T2, T3
-- AC2 → T2, T4
-- AC3 → T2, T4
-- AC4 → T4
-- AC5 → T2, T4
-- AC6 → T5
+- AC1 → T2, T3, T7
+- AC2 → T2, T4, T7
+- AC3 → T2, T4, T7
+- AC4 → T4, T6, T7
+- AC5 → T2, T4, T6, T7
+- AC6 → T5, T7
 
 ## Tasks
 
@@ -44,6 +44,8 @@
 - [x] T3: Write the AI usage disclosure and Acknowledgements prose, and delete the `Word budget:` lines and `[src:]` markers outside Research impact.
 - [x] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
 - [x] T5: Push the branch and confirm the draft-PDF run on the head SHA.
+- [ ] T6: Fix the review findings triaged fix-now (Review section: F1, F2 through F1, F3, F6 to F11, F14 with H1, F15, F16, F17, F19). Read the package source or manual for each new claim, and add bib entries for Shrout and Fleiss and for Gwet's handbook.
+- [ ] T7: Re-run the AC1 to AC5 checks on the fixed text, and confirm the draft-PDF run on the new head SHA.
 
 ## Work log
 
@@ -68,6 +70,7 @@
 - 2026-09-13: the corrected claim is the boundary error: it names a method only when a run gives a usable interval, and it runs only the methods the design allows. The same reader re-read the fix once and supplied the final wording. After the fix: words 1058, number and citation greps unchanged.
 - 2026-09-13: draft PDF run 34783143039 on 36a297b (the corrected prose) concluded success. Status set to review.
 - 2026-09-13: review started. The branch was pushed before the approval gate, because AC6 needs a run on the head SHA. The draft-PDF workflow has only push and manual triggers, so no PR checks ran.
+- 2026-09-13: review returned M004 to in-progress (defect return 1). F1 fails AC5: line 66 claims agreement with psych, irr, and irrICC with no limit, but the CSV shows it only on balanced data. At the gate the user chose to fix every proposed fix-now finding. Requested changes are T6 and T7. All six criteria were unticked, because the fixes change the text each one reads.
 
 ## Decisions
 
@@ -105,3 +108,4 @@
 - H2 and P1: lines 68 to 69 give exact rounded gaps, not the bound the M003 review candidate row suggested. Proposed: reject, the start gate chose rounded CSV values, recorded in the work log. The candidate row's first half is spent and is pruned at hygiene.
 - H3: the outline's capability matrix (fixed or random rater framing) is not restated. Proposed: reject, ordinary compression. Line 26 names random or fixed raters.
 - Floor: F1 shows AC5 failing inside its domain, so it is a defect return (the first on this milestone).
+- Gate (2026-09-13): the user chose "Return, fix all proposed". Every fix-now item above goes to T6. F4 and the F2 remainder (CSV rows for psych's incomplete estimates) become candidate rows. F5, F12, F13, F18, H2 with P1, and H3 are rejected for the reasons given above.
