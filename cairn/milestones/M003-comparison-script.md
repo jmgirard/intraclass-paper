@@ -1,6 +1,6 @@
 # M003: A committed script produces the comparison figures the paper reports
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
@@ -21,9 +21,9 @@
 
 ## Acceptance criteria
 
-- [x] AC1: `analysis/comparison-results.csv` is tracked (`git ls-files --error-unmatch` exits 0). `Rscript analysis/comparison.R`, run from the repo root, exits 0 and rewrites it. `git diff --exit-code analysis/comparison-results.csv` then exits 0. The script stops with an error when intraclass, psych, irr, or irrICC is not installed.
+- [ ] AC1: `analysis/comparison-results.csv` is tracked (`git ls-files --error-unmatch` exits 0). `Rscript analysis/comparison.R`, run from the repo root, exits 0 and rewrites it. `git diff --exit-code analysis/comparison-results.csv` then exits 0. The script stops with an error when intraclass, psych, irr, or irrICC is not installed.
 - [x] AC2: The results file holds rows `version_intraclass`, `version_psych`, `version_irr`, `version_irrICC` (each `packageVersion()`) and `repository_intraclass` (`packageDescription("intraclass")$Repository`). `version_intraclass` is `0.1.0`, and `repository_intraclass` is `CRAN`.
-- [x] AC3: The results file has the columns `name,value`, with values written to 6 significant digits and no interval or timestamp rows. It holds 18 rows named `balanced_<pkg>_<coef>`, for pkg in `intraclass`, `psych`, `irr` and coef in `ICC1`, `ICC1k`, `ICCA1`, `ICCAk`, `ICCC1`, `ICCCk`. It also holds the row `balanced_max_abs_gap`, the largest absolute intraclass-minus-psych or intraclass-minus-irr difference among them. The other rows are `irricc_icc2r`, `irricc_abs_diff_ICCA1`, `incomplete_complete_case_subjects`, `incomplete_intraclass_subjects`, `incomplete_intraclass_ratings`, `incomplete_intraclass_k_eff`, and `incomplete_psych_subjects` (`n.obs` from `psych::ICC` with its defaults).
+- [ ] AC3: The results file has the columns `name,value`, with numeric values other than the `version_` and `repository_` rows rounded to 6 significant digits, and no interval or timestamp rows. It holds 18 rows named `balanced_<pkg>_<coef>`, for pkg in `intraclass`, `psych`, `irr` and coef in `ICC1`, `ICC1k`, `ICCA1`, `ICCAk`, `ICCC1`, `ICCCk`. It also holds the row `balanced_max_abs_gap`, the largest absolute intraclass-minus-psych or intraclass-minus-irr difference among them. The other rows are the five AC2 rows, `irricc_icc2r`, `irricc_abs_diff_ICCA1`, `incomplete_complete_case_subjects`, `incomplete_intraclass_subjects`, `incomplete_intraclass_ratings`, `incomplete_intraclass_k_eff`, and `incomplete_psych_subjects` (`n.obs` from `psych::ICC` with its defaults).
 - [x] AC4: In `paper/paper.md`, three bullets each state the value of their row at a rounding the bullet names, and each ends in `[src: analysis/comparison-results.csv]`. The bullets are the State of the field bullet on the largest gap (`balanced_max_abs_gap`), the irrICC agreement bullet (`irricc_abs_diff_ICCA1`), and the Statement of need bullet on listwise deletion (`incomplete_complete_case_subjects`). The irrICC bullet says "reproduces" only if `irricc_abs_diff_ICCA1` is below 5e-5.
 
 ## Coverage
@@ -58,6 +58,9 @@
 - 2026-09-13: re-audit: AC3 (full) — two findings. "Values" also covers the version and repository rows, so `version_irr` 0.85 fails the 6-digit rule. "Integer counts" leaves whole-number results that are not counts unbound. The amendment also widens AC3, because it adds the trailing-zero promise.
 - 2026-09-13: the AC3 mini gate chose "with numeric values other than the `version_` and `repository_` rows written to at most 6 significant digits", which adds no promise.
 - 2026-09-13: re-audit: AC3 (full) — two findings. "At most 6" sets no lower limit, so a value cut to one digit passes. "The other rows are" closes the row list at 26 names and leaves out the 5 AC2 rows, which the old wording also did. This is the second AC3 re-audit, so further AC3 wording goes to the maintainer without a reader.
+- 2026-09-13: amendment adopted at the maintainer's choice. AC3 now says "rounded to 6 significant digits" for numeric rows other than the `version_` and `repository_` rows, and its row list starts with "the five AC2 rows". The AC1 and AC3 boxes are cleared, because the results file changed and review must check both again.
+- 2026-09-13: claim audit: 6 claims read, 1 corrected — analysis/comparison.R, analysis/comparison-results.csv. This pass read only the lines the review gate fixes added. The header said "Integer counts", but the code writes any whole-valued number without decimals, so the comment now says that. The same reader re-read it and it holds.
+- 2026-09-13: `Rscript analysis/comparison.R` exited 0, `git diff --exit-code` on the results file exited 0, and `cairn_validate.py` passed. Status set to review.
 
 ## Decisions
 

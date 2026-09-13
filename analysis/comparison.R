@@ -5,8 +5,9 @@
 #
 # The script writes analysis/comparison-results.csv with columns name,value.
 # Non-integer values are written to 6 significant digits, trailing zeros kept.
-# Integer counts are written as whole numbers. Only point estimates are
-# written, because interval bounds depend on Monte-Carlo draws.
+# Whole-valued numbers (such as counts) are written without decimals. Only
+# point estimates are written, because interval bounds depend on Monte-Carlo
+# draws.
 # Adapted from the vignette comparison-with-other-packages.Rmd in the
 # intraclass package (validation, irrICC, and incomplete-data chunks).
 
