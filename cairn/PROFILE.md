@@ -16,9 +16,14 @@ marker) is present. A repo replaces the placeholder in `verify` with its own
 test command; the other slots stand as-is until a richer profile is authored.
 
 ## verify
-No automated verify: this repository holds a paper, not code. Tasks are checked
-against the acceptance-criteria evidence. Once the JOSS draft-PDF workflow
-exists, a milestone may declare its local render command here.
+No local verify: this repository holds a paper, not code. Tasks are checked
+against the acceptance-criteria evidence. For a task that changes `paper/`, the
+verify step is a successful run of `.github/workflows/draft-pdf.yml` on the
+branch head. A push that changes `paper/**` starts the run. If no push started
+it, start it by hand. After the run concludes, download the PDF:
+
+    gh workflow run draft-pdf.yml --ref <branch>
+    gh run download <run-id> -n paper
 
 ## consistency-gate
 Toolchain checks `/milestone-review` runs *in addition to* the universal
