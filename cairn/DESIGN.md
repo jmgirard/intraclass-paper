@@ -45,8 +45,11 @@ None elicited yet. `/design-interview` elicits the IP (inviolable) and GP
 
 ## Architecture
 
-A single Markdown paper with a BibTeX bibliography, rendered to PDF by the
-JOSS draft-PDF GitHub Action once that workflow is added.
+A single Markdown paper with a BibTeX bibliography. The workflow
+`.github/workflows/draft-pdf.yml` renders it to PDF with the JOSS draft-PDF
+GitHub Action. A push that changes `paper/**` or the workflow file starts it,
+and a manual run starts it on any branch that contains the workflow file. The
+PDF is the Actions artifact named `paper`. If no PDF exists, the upload fails.
 
 ## Known issues
 
