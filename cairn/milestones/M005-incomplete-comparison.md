@@ -1,6 +1,6 @@
 # M005: The paper's comparison with psych and irrICC rests on script rows for incomplete data and the no-interaction model
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** M004
 - **Driving RR:** —
@@ -66,6 +66,7 @@
 - 2026-09-13: T4 checks. Agree gaps are 0.000001 for ICC(A,1) and 0 for ICC(C,1). Differ gaps are 0.024 to 0.21. Citation keys equal the bib keys, pandoc gives no citation warning, and the word count is 1128.
 - 2026-09-13: T5 done. Branch pushed. Draft-PDF run 34789943136 on 1e92e67 concluded `success`. Later tracking-only commits do not change `paper/`.
 - 2026-09-13: claim audit: 8 claims read, 1 corrected — paper/paper.md, analysis/comparison.R. The fresh Opus reader found all 8 true but called "divides these coefficients by 3.27" loose. The two divisor sentences now use the manual's term "averaging divisor", and the reader's re-read found them true.
+- 2026-09-13: draft-PDF run 34790031099 on 7498aaf, the last commit that changes `paper/`, concluded `success`. The word count is now 1129. Status set to review.
 
 ## Decisions
 
