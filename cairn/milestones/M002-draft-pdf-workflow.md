@@ -55,3 +55,13 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 - AC1 evidence (2026-09-13): a YAML parse of `.github/workflows/draft-pdf.yml` shows the triggers `workflow_dispatch` and `push` with paths `paper/**` and `.github/workflows/draft-pdf.yml`. The steps are checkout, `openjournals/openjournals-draft-action@master` with `journal: joss` and `paper-path: paper/paper.md`, and `upload-artifact` with `name: paper` and `path: paper/paper.pdf`. PASS.
 - AC2 evidence (2026-09-13): manual run 34778819323 on head `8365aad` concluded `success`. `gh run download 34778819323 -n paper` retrieved `paper.pdf` (211150 bytes). The squeezed `pdftotext -raw -l 1` output contains the squeezed title "intraclass: Modern intraclass correlation coefficients for interrater reliability in R". The same title with `XYZ` appended does not match. PASS. The later review commits change only `cairn/`, so the built files are the same at the merged head.
 - Consistency gate (2026-09-13): `cairn_validate.py` exit 0, all checks passed. No principle changed, so `cairn_impact` was skipped. The `generic` profile names no toolchain checks.
+- Independent review (2026-09-13): the diff touches a workflow file, so all three lenses ran. The history lens and the prior-review lens found nothing. The diff lens found no criterion failure and reported 8 low findings, ranked:
+  - F1: `draft-pdf.yml:23-26` leaves `if-no-files-found` at `warn`, so a run with no PDF still ends green.
+  - F2: `draft-pdf.yml:18` uses the draft action at `@master`, which pulls `inara:latest`, so the same commit can render differently later.
+  - F3: the workflow has no `permissions:` block. If the repo setting changes to read/write, the job gets a write token.
+  - F4: the PROFILE `verify` recipe does not say how to find the run id after `gh workflow run`, so a reader can download an older run.
+  - F5: DESIGN says a manual run starts "on any branch", but it only works on a branch that holds the workflow file.
+  - F6: tag pushes ignore the `paths` filter, so each release tag starts one build.
+  - F7: no `concurrency` or `timeout-minutes`, so quick pushes each build and a hung build runs up to 6 hours.
+  - F8: the AC2 title match comes from the page-1 citation block. If the template changes, the check can fail on a good PDF.
+- Triage: none of the findings shows a criterion failing, so the return floor does not apply. Dispositions are set at the approval gate.
