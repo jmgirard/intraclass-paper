@@ -65,3 +65,25 @@ Word budget: 350
 - Every estimator traces to a published primary source and agrees with at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
 - A test matrix holds point-estimate agreement across engines for every estimand. [src: intraclass/cairn/DESIGN.md]
 - Output never labels an ICC as poor, good, or excellent, and guidance covers which coefficient to report. [src: intraclass/cairn/DESIGN.md]
+
+# Research impact statement
+
+Word budget: 150
+- CRAN download counts for intraclass since its first release. [src: to gather]
+- Published studies or preprints that cite or use intraclass. [src: to gather]
+- Issues, questions, and feature requests from users outside the maintainer's group. [src: to gather]
+- Use of the package or its documentation in teaching, workshops, or methods guidance. [src: to gather]
+
+# AI usage disclosure
+
+Word budget: 100
+- Generative AI (Claude Code) helped write the software, the documentation, and this paper. [src: maintainer]
+- The maintainer reviewed every change before it reached the default branch. [src: maintainer]
+- Numerical correctness rests on tests that check each estimator against at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
+
+# Acknowledgements
+
+Word budget: 50
+- People and funding to acknowledge, as the maintainer names them. [src: maintainer]
+
+# References
