@@ -1,6 +1,6 @@
 # M003: A committed script produces the comparison figures the paper reports
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
@@ -51,5 +51,6 @@
 - 2026-09-13: T3 done. The results file is committed with 31 rows. A second run exited 0, changed the file time, and left `git diff --exit-code` at 0.
 - 2026-09-13: T4 done in 96afecf. The three bullets give 7e-6, 6e-6, and 2, each from its row. Draft-PDF run 34779506540 passed, and its PDF text holds the gap bullet. The T4 tick went in a later commit, because 96afecf was already pushed.
 - 2026-09-13: claim audit: 19 claims read, 1 corrected — analysis/comparison.R, analysis/comparison-results.csv, paper/paper.md. The listwise-deletion bullet cited only the CSV for its usability sentence, so it now also cites the vignette and still ends in the CSV marker. The same reader re-read it and it holds.
+- 2026-09-13: draft-PDF run 34779674826 on the audit fix passed. Status set to review.
 
 ## Decisions
