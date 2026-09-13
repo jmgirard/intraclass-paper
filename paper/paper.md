@@ -34,7 +34,7 @@ Word budget: 250
 - The audience is applied behavioral and clinical researchers who must report a defensible ICC but do not yet know which one they need. [src: intraclass/cairn/DESIGN.md]
 - Choosing the coefficient is a modeling decision: agreement or consistency, single or average, fixed or random raters. [src: intraclass/README.Rmd]
 - Real rating data are often incomplete or unbalanced, and classical ANOVA ICCs need a complete subjects-by-raters rectangle. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- Listwise deletion can leave too few subjects for a usable ICC. In the shipped `ratings_incomplete` example, 2 subjects have complete ratings (an exact count). [src: analysis/comparison-results.csv]
+- Listwise deletion can leave too few subjects for a usable ICC. [src: intraclass/vignettes/comparison-with-other-packages.Rmd] In the shipped `ratings_incomplete` example, 2 subjects have complete ratings (an exact count). [src: analysis/comparison-results.csv]
 - Subjects nested in clusters (pupils in classrooms, patients in clinics) need separate subject-level and cluster-level reliability. [src: intraclass/README.Rmd]
 - A variance component estimated at or near zero is the common applied case for interrater data. [src: intraclass/cairn/DESIGN.md]
 - A normal-approximation interval misbehaves at that zero boundary. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
