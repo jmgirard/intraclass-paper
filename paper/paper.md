@@ -56,10 +56,10 @@ An interval for such a component must respect the zero boundary.
 
 Several R packages compute ICCs.
 irr [@irr] computes the classical agreement and consistency ICCs for single and average ratings, and it omits missing data listwise.
-psych [@psych] computes the ICCs of Shrout and Fleiss [@shrout1979] with confidence limits.
+psych [@psych] computes the ICCs that @shrout1979 define, with confidence limits.
 By default, psych fits them with `lmer()` from lme4 [@lme4], which handles missing values.
 On the `ratings_incomplete` example, psych used all 6 subjects.
-irrICC [@irrICC] computes the ICCs for inter-rater and intra-rater reliability that Gwet's handbook [@gwet2014] describes, under analysis-of-variance models.
+irrICC [@irrICC] computes the ICCs for inter-rater and intra-rater reliability that the handbook of @gwet2014 describes, under analysis-of-variance models.
 performance [@performance] computes an ICC, which its manual also calls a variance partition coefficient.
 It works from a mixed-effects model that the user fitted, for any model that `insight::get_variance()` supports.
 
