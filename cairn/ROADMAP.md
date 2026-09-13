@@ -7,7 +7,7 @@ _Last hygiene check: 2026-09-10 (scaffold; nothing to check yet)_
 
 | ID | Title | Status | Depends on | Priority | File/Archive |
 |---|---|---|---|---|---|
-| M001 | The paper has a sourced outline in JOSS's required structure | in-progress | — | high | milestones/M001-paper-outline.md |
+| M001 | The paper has a sourced outline in JOSS's required structure | review | — | high | milestones/M001-paper-outline.md |
 <!-- rows grouped by status, not sorted by ID; keep only the 3 most recent
      terminal (done or dropped) rows — older ones live in milestones/archive/ + git -->
 

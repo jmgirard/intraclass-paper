@@ -59,7 +59,7 @@ Word budget: 350
 - glmmTMB [@glmmTMB] is the default engine, and it keeps variance components on a log-SD scale, so boundary fits stay finite. [src: intraclass/cairn/DESIGN.md]
 - lme4 [@lme4] is an alternate engine and an independent oracle for the default. [src: intraclass/cairn/DESIGN.md]
 - brms [@brms] adds Bayesian fits and lavaan [@lavaan] adds structural-equation fits, both optional. [src: intraclass/cairn/DESIGN.md]
-- Optional engines stay in Suggests behind an install check, so a plain install leaves only glmmTMB ready to use. [src: intraclass/README.Rmd]
+- Optional engines stay in Suggests, so a plain install leaves only glmmTMB ready to use. [src: intraclass/README.Rmd]
 - The default interval draws Monte-Carlo samples from the parameter covariance on the engine's log scale, so it is boundary-aware by construction. [src: intraclass/cairn/DESIGN.md]
 - Bootstrap and posterior intervals are selectable, and one documented policy states how each interval method treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
 - Ill-posed designs fail loudly through classed error conditions. [src: intraclass/cairn/DESIGN.md]

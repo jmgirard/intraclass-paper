@@ -1,6 +1,6 @@
 # M001: The paper has a sourced outline in JOSS's required structure
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** high
 - **Depends on:** —
 - **Driving RR:** —
@@ -65,6 +65,10 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 - 2026-09-13: T3 done. Software design outlined from the package DESIGN.md, citing glmmTMB, lme4, brms, and lavaan.
 - 2026-09-13: T4 done. Research impact (four evidence kinds, all to gather), AI usage disclosure, Acknowledgements, and an empty References outlined. Budgets total 1300 words.
 - 2026-09-13: T5 done. paper.bib holds 10 entries from local `citation()` output (first journal entry where several). irrICC's spurious "Ph.D." co-author was dropped, intraclass follows the package's inst/CITATION with CRAN 0.1.0 (published 2026-09-10), and tenhove2022 follows the package BIBLIOGRAPHY.md. The AC1 to AC5 and AC7 commands all pass. The budget total is 1300, all four intraclass paths exist at 497d617, and the two key sets are equal. The AC4 and AC5 greps were shown to catch planted bad lines.
+- 2026-09-13: claim audit: 50 claims read, 10 corrected — paper/paper.md, paper/paper.bib
+- 2026-09-13: claim-audit corrections: tenhove2022 scoped to multilevel methods and "raters nested" fixed to "subjects nested". One bullet was split to keep one marker each. Four Software design bullets were narrowed to their sources, and the psych note is 2.6.5. The reader's re-read found all ten supported, and an install-check clause that README does not state was dropped. AC3 and AC4 re-run clean, budget total still 1300.
+- 2026-09-13: author kept as "Jeffrey M. Girard" by the implement gate. The package inst/CITATION still says "Jeffrey Girard".
+- 2026-09-13: status set to review.
 
 ## Decisions
 
