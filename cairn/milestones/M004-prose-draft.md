@@ -1,6 +1,6 @@
 # M004: The paper is drafted as prose within JOSS's length limit
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** M002, M003
 - **Driving RR:** —
@@ -66,6 +66,7 @@
 - 2026-09-13: T5: pushed 7e581a9. Draft PDF run 34782970762 on that SHA concluded success, and its paper artifact is a 3-page PDF.
 - 2026-09-13: claim audit: 36 claims read, 1 corrected — paper/paper.md
 - 2026-09-13: the corrected claim is the boundary error: it names a method only when a run gives a usable interval, and it runs only the methods the design allows. The same reader re-read the fix once and supplied the final wording. After the fix: words 1058, number and citation greps unchanged.
+- 2026-09-13: draft PDF run 34783143039 on 36a297b (the corrected prose) concluded success. Status set to review.
 
 ## Decisions
 

@@ -7,7 +7,7 @@ _Last hygiene check: 2026-09-13 (M003 archived, one lesson added, validator clea
 
 | ID | Title | Status | Depends on | Priority | File/Archive |
 |---|---|---|---|---|---|
-| M004 | The paper is drafted as prose within JOSS's length limit | in-progress | M002, M003 | normal | milestones/M004-prose-draft.md |
+| M004 | The paper is drafted as prose within JOSS's length limit | review | M002, M003 | normal | milestones/M004-prose-draft.md |
 | M003 | A committed script produces the comparison figures the paper reports | done | — | normal | milestones/archive/M003-comparison-script.md |
 | M002 | A push that changes the paper builds a JOSS draft PDF | done | — | normal | milestones/archive/M002-draft-pdf-workflow.md |
 | M001 | The paper has a sourced outline in JOSS's required structure | done | — | high | milestones/archive/M001-paper-outline.md |
