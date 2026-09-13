@@ -65,6 +65,7 @@
 - 2026-09-13: T4 number ledger. 0.000006 is `irricc_nointer_abs_diff_ICCA1`, 0.000007 is `balanced_max_abs_gap`, and 3.27 is `incomplete_intraclass_k_eff`. The divisor 4 is `incomplete_psych_k`, and 2, 20, and 6 are the incomplete subject and rating counts. 1979, 2014, and 2022 are years, and the other 1s and six 4s are ICC labels and lme4. "Four" and "three" count items their sentences name.
 - 2026-09-13: T4 checks. Agree gaps are 0.000001 for ICC(A,1) and 0 for ICC(C,1). Differ gaps are 0.024 to 0.21. Citation keys equal the bib keys, pandoc gives no citation warning, and the word count is 1128.
 - 2026-09-13: T5 done. Branch pushed. Draft-PDF run 34789943136 on 1e92e67 concluded `success`. Later tracking-only commits do not change `paper/`.
+- 2026-09-13: claim audit: 8 claims read, 1 corrected — paper/paper.md, analysis/comparison.R. The fresh Opus reader found all 8 true but called "divides these coefficients by 3.27" loose. The two divisor sentences now use the manual's term "averaging divisor", and the reader's re-read found them true.
 
 ## Decisions
 

@@ -68,8 +68,8 @@ The ICC(A,1) of intraclass differed by 0.000006 from the irrICC inter-rater reli
 
 On the incomplete `ratings_incomplete` example, psych and intraclass agreed on ICC(A,1) and ICC(C,1).
 They differed on ICC(1), ICC(k), ICC(A,k), and ICC(C,k).
-For the averaged coefficients ICC(k), ICC(A,k), and ICC(C,k), the psych values imply a divisor of 4 raters.
-intraclass divides these coefficients by 3.27, the harmonic mean of the number of ratings per subject.
+For the averaged coefficients ICC(k), ICC(A,k), and ICC(C,k), the psych values imply an averaging divisor of 4 raters.
+intraclass sets that divisor to 3.27, the harmonic mean of the number of ratings per subject.
 
 intraclass brings together mixed-model estimation for incomplete and multilevel designs, intervals that respect the zero boundary, and guidance on which coefficient to report.
 For a balanced, complete design that needs only the classical coefficients, psych and irr remain direct choices.
