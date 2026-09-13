@@ -25,7 +25,7 @@ Word budget: 150
 - It estimates variance components from linear mixed models instead of classical ANOVA mean squares. [src: intraclass/DESCRIPTION]
 - It covers the full ICC family: agreement or consistency, single or average, fixed or random raters, one-way or two-way. [src: intraclass/DESCRIPTION]
 - Every coefficient comes with a boundary-aware Monte-Carlo confidence interval. [src: intraclass/README.Rmd]
-- It handles imbalanced, incomplete, and multilevel designs, following ten Hove, Jorgensen, and van der Ark [@tenhove2022]. [src: intraclass/DESCRIPTION]
+- It handles imbalanced, incomplete, and multilevel designs, and its multilevel methods follow ten Hove, Jorgensen, and van der Ark [@tenhove2022]. [src: intraclass/DESCRIPTION]
 - It projects reliability to other numbers of raters with `d_study()` and helps users choose a coefficient with `choose_icc()`. [src: intraclass/README.Rmd]
 
 # Statement of need
@@ -35,8 +35,9 @@ Word budget: 250
 - Choosing the coefficient is a modeling decision: agreement or consistency, single or average, fixed or random raters. [src: intraclass/README.Rmd]
 - Real rating data are often incomplete or unbalanced, and classical ANOVA ICCs need a complete subjects-by-raters rectangle. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - Listwise deletion can leave too few subjects for a usable ICC, and the shipped `ratings_incomplete` example shows this. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- Raters nested in clusters (pupils in classrooms, patients in clinics) need separate subject-level and cluster-level reliability. [src: intraclass/README.Rmd]
-- Variance components near zero are common in interrater data, and normal-approximation intervals misbehave at that boundary. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+- Subjects nested in clusters (pupils in classrooms, patients in clinics) need separate subject-level and cluster-level reliability. [src: intraclass/README.Rmd]
+- A variance component estimated at or near zero is the common applied case for interrater data. [src: intraclass/cairn/DESIGN.md]
+- A normal-approximation interval misbehaves at that zero boundary. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - The package's documentation site also teaches ICC practice, not only the function calls. [src: intraclass/README.Rmd]
 
 # State of the field
@@ -55,15 +56,15 @@ Word budget: 250
 Word budget: 350
 - The public surface is `icc()` (fit, estimate, interval), `d_study()` (projection), `choose_icc()` (selection), and tidy S3 methods. [src: intraclass/cairn/DESIGN.md]
 - Four estimation engines sit behind one interface: frequentist, frequentist oracle, Bayesian, and structural-equation. [src: intraclass/cairn/DESIGN.md]
-- glmmTMB [@glmmTMB] is the default engine because it keeps a variance component positive on a log-SD scale, so boundary fits stay finite. [src: intraclass/cairn/DESIGN.md]
+- glmmTMB [@glmmTMB] is the default engine, and it keeps variance components on a log-SD scale, so boundary fits stay finite. [src: intraclass/cairn/DESIGN.md]
 - lme4 [@lme4] is an alternate engine and an independent oracle for the default. [src: intraclass/cairn/DESIGN.md]
 - brms [@brms] adds Bayesian fits and lavaan [@lavaan] adds structural-equation fits, both optional. [src: intraclass/cairn/DESIGN.md]
-- Optional engines stay in Suggests behind an install check, which keeps the default install light. [src: intraclass/cairn/DESIGN.md]
+- Optional engines stay in Suggests behind an install check, so a plain install leaves only glmmTMB ready to use. [src: intraclass/README.Rmd]
 - The default interval draws Monte-Carlo samples from the parameter covariance on the engine's log scale, so it is boundary-aware by construction. [src: intraclass/cairn/DESIGN.md]
-- Bootstrap and posterior intervals are selectable, and each method documents how it treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
-- Ill-posed designs fail through classed error conditions that name the problem and a remedy. [src: intraclass/cairn/DESIGN.md]
+- Bootstrap and posterior intervals are selectable, and one documented policy states how each interval method treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
+- Ill-posed designs fail loudly through classed error conditions. [src: intraclass/cairn/DESIGN.md]
 - Every estimator traces to a published primary source and agrees with at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
-- A test matrix holds point-estimate agreement across engines for every estimand. [src: intraclass/cairn/DESIGN.md]
+- A standing test matrix pins frequentist point-estimate agreement across the estimand-by-engine grid and checks every documented engine refusal. [src: intraclass/cairn/DESIGN.md]
 - Output never labels an ICC as poor, good, or excellent, and guidance covers which coefficient to report. [src: intraclass/cairn/DESIGN.md]
 
 # Research impact statement
