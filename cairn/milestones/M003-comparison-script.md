@@ -61,6 +61,8 @@
 - 2026-09-13: amendment adopted at the maintainer's choice. AC3 now says "rounded to 6 significant digits" for numeric rows other than the `version_` and `repository_` rows, and its row list starts with "the five AC2 rows". The AC1 and AC3 boxes are cleared, because the results file changed and review must check both again.
 - 2026-09-13: claim audit: 6 claims read, 1 corrected — analysis/comparison.R, analysis/comparison-results.csv. This pass read only the lines the review gate fixes added. The header said "Integer counts", but the code writes any whole-valued number without decimals, so the comment now says that. The same reader re-read it and it holds.
 - 2026-09-13: `Rscript analysis/comparison.R` exited 0, `git diff --exit-code` on the results file exited 0, and `cairn_validate.py` passed. Status set to review.
+- 2026-09-13: re-review found AC1 to AC4 passing and 10 findings. At the gate, the maintainer chose a follow-up row for G1, a fix for G5, and rejection for the rest.
+- 2026-09-13: step-7 approval: m003-comparison-script approved for merge
 
 ## Decisions
 
@@ -100,3 +102,6 @@
 - G8: `gwet_frame` names `score.1` to `score.4` directly, so a fifth rater would be dropped silently.
 - G9 (blame, low): the F1 optimizer drift sits in a ROADMAP candidate row, not in DESIGN.md Known issues.
 - G10 (blame, low): the header comment change in 284a107 matches the code. The reviewer reported it as a note, not a defect.
+- G1 disposition: follow-up. A candidate row asks what a Posit Package Manager install records before the guard changes.
+- G5 disposition: fixed now. The heading reads "Paper numbers come from committed scripts".
+- G2, G3, G4, G6, G7, G8, G9, G10 disposition: rejected. None of them changes the current results file. The script is fixed to one dataset and to `Rscript` use, D-001 accepts unchecked versions for the other packages, the drift already has a candidate row, and G10 reports no defect.

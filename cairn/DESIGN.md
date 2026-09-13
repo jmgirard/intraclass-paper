@@ -28,7 +28,7 @@ PDF; each arrives with its own milestone.
 
 ## Conventions
 
-- **Numeric work needs oracle verification (greenfield opener, 2026-09-10):**
+- **Paper numbers come from committed scripts (greenfield opener, 2026-09-10; heading corrected M003):**
   every number the paper reports is produced by a committed script run against
   a named `intraclass` version, never transcribed by hand. A comparison figure
   comes from `analysis/comparison.R`, which runs intraclass and the compared
