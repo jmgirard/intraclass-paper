@@ -20,57 +20,88 @@ bibliography: paper.bib
 
 # Summary
 
-Word budget: 150
-- intraclass [@intraclass] is an R package that estimates interrater-reliability intraclass correlation coefficients (ICCs) within generalizability theory. [src: intraclass/DESCRIPTION]
-- It estimates variance components from linear mixed models instead of classical ANOVA mean squares. [src: intraclass/DESCRIPTION]
-- It covers the full ICC family: agreement or consistency, single or average, fixed or random raters, one-way or two-way. [src: intraclass/DESCRIPTION]
-- Each coefficient comes with a confidence interval, by default a boundary-aware Monte-Carlo interval. [src: intraclass/cairn/DESIGN.md]
-- It handles imbalanced, incomplete, and multilevel designs, and its multilevel methods follow ten Hove, Jorgensen, and van der Ark [@tenhove2022]. [src: intraclass/DESCRIPTION]
-- It projects reliability to other numbers of raters with `d_study()` and helps users choose a coefficient with `choose_icc()`. [src: intraclass/README.Rmd]
+intraclass [@intraclass] is an R package that estimates intraclass correlation coefficients (ICCs) for interrater reliability within generalizability theory.
+It estimates the variance components with linear mixed models instead of the mean squares of a classical analysis of variance.
+The package provides the full family of interrater ICCs.
+The coefficient can measure absolute agreement or consistency, for single or average ratings, with random or fixed raters.
+The raters can be crossed with the subjects, or each subject can have its own raters.
+Each coefficient comes with a confidence interval, by default a Monte-Carlo interval that keeps each variance positive.
+The package handles unbalanced, incomplete, and multilevel designs, and its multilevel methods follow @tenhove2022.
+It also projects reliability to other numbers of raters with `d_study()` and recommends a coefficient for a stated design with `choose_icc()`.
 
 # Statement of need
 
-Word budget: 250
-- The audience is applied behavioral and clinical researchers who must report a defensible ICC but do not yet know which one they need. [src: intraclass/cairn/DESIGN.md]
-- Choosing the coefficient is a modeling decision: agreement or consistency, single or average, fixed or random raters. [src: intraclass/README.Rmd]
-- Real rating data are often incomplete or unbalanced, and classical ANOVA ICCs need a complete subjects-by-raters rectangle. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- Listwise deletion can leave too few subjects for a usable ICC. [src: intraclass/vignettes/comparison-with-other-packages.Rmd] In the shipped `ratings_incomplete` example, 2 subjects have complete ratings (an exact count). [src: analysis/comparison-results.csv]
-- Subjects nested in clusters (pupils in classrooms, patients in clinics) need separate subject-level and cluster-level reliability. [src: intraclass/README.Rmd]
-- A variance component estimated at or near zero is the common applied case for interrater data. [src: intraclass/cairn/DESIGN.md]
-- A normal-approximation interval misbehaves at that zero boundary. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- The package's documentation site also teaches ICC practice, not only the function calls. [src: intraclass/README.Rmd]
+Researchers in the behavioral and clinical sciences often report an ICC to show that their raters give consistent scores.
+The choice of coefficient is a modeling decision.
+Do systematic differences between raters count as error?
+Do later decisions rest on the score of a single rater or on an average?
+Do the raters stand for a larger pool of possible raters?
+intraclass is written for researchers who must make these choices and defend them in a report.
+Its `choose_icc()` function names the recommended coefficient, gives the reason for each part of the choice, and prints the call that computes it.
+Its documentation site teaches ICC practice as well as the use of each function.
+
+Real rating data rarely fill a complete table of subjects by raters.
+Raters miss sessions, and studies often assign different raters to different subjects.
+Estimators built on the mean squares of a complete table need a complete set of ratings for each subject.
+For example, irr [@irr] omits incomplete subjects listwise.
+The `ratings_incomplete` example ships with intraclass.
+In it, only 2 subjects have a rating from every rater, but intraclass uses all 20 ratings of the 6 subjects.
+
+Rating studies have further features that call for more than the classical formulas.
+Subjects are often nested in clusters, such as pupils in classrooms or patients in clinics.
+A study can then need reliability at the subject level or at the cluster level.
+A variance component estimated at or near zero is also common in interrater data.
+An interval for such a component must respect the zero boundary.
 
 # State of the field
 
-Word budget: 250
-- irr [@irr] computes the classical ICC family from ANOVA mean squares and needs balanced, complete data. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- psych [@psych] computes the Shrout and Fleiss ICCs and by default fits them with `lme4::lmer`, which allows missing ratings. [src: https://search.r-project.org/CRAN/refmans/psych/html/ICC.html]
-- irrICC [@irrICC] implements Gwet's ICCs by a moment method and can fit incomplete data with its own model. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- performance [@performance] returns a variance-partition coefficient, not the interrater ICC family or its agreement and consistency framing. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- On the balanced `ratings` data, the largest absolute gap between intraclass and psych or irr across six ICCs is 7e-6 (rounded to one significant digit). [src: analysis/comparison-results.csv]
-- intraclass's ICC(A,1) reproduces the two-way random agreement coefficient of irrICC, with an absolute difference of 6e-6 (rounded to one significant digit). [src: analysis/comparison-results.csv]
-- A capability matrix contrasts psych, irr, irrICC, and intraclass on incomplete data, multilevel reliability, boundary-aware intervals, fixed or random rater framing, and selection guidance. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
-- psych and irr remain the right tools for balanced, complete designs that need only the classic coefficients. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+Several R packages compute ICCs.
+irr [@irr] computes the classical agreement and consistency ICCs for single and average ratings, and it omits missing data listwise.
+psych [@psych] computes the Shrout and Fleiss ICCs with confidence limits.
+By default, psych fits them with `lmer()` from lme4 [@lme4], which handles missing values.
+On the `ratings_incomplete` example, psych used all 6 subjects.
+irrICC [@irrICC] computes the ICCs for inter-rater and intra-rater reliability that Gwet's handbook describes, under analysis-of-variance models.
+performance [@performance] computes an ICC, which its manual also calls a variance partition coefficient, from a fitted mixed-effects model.
+
+The point estimates of intraclass agree with those of psych, irr, and irrICC where their coefficients coincide.
+On the balanced `ratings` example, intraclass, psych, and irr computed ICC(1), ICC(k), ICC(A,1), ICC(A,k), ICC(C,1), and ICC(C,k).
+The largest absolute difference between intraclass and either psych or irr was 0.000007.
+The ICC(A,1) of intraclass differed from the irrICC agreement coefficient for random raters by 0.000006.
+
+intraclass brings together mixed-model estimation for incomplete and multilevel designs, intervals that respect the zero boundary, and guidance on which coefficient to report.
+For a balanced, complete design that needs only the classical coefficients, psych and irr remain direct choices.
 
 # Software design
 
-Word budget: 350
-- The public surface is `icc()` (fit, estimate, interval), `d_study()` (projection), `choose_icc()` (selection), and tidy S3 methods. [src: intraclass/cairn/DESIGN.md]
-- Four estimation engines sit behind one interface: frequentist, frequentist oracle, Bayesian, and structural-equation. [src: intraclass/cairn/DESIGN.md]
-- glmmTMB [@glmmTMB] is the default engine, and it keeps variance components on a log-SD scale, so boundary fits stay finite. [src: intraclass/cairn/DESIGN.md]
-- lme4 [@lme4] is an alternate engine and an independent oracle for the default. [src: intraclass/cairn/DESIGN.md]
-- brms [@brms] adds Bayesian fits and lavaan [@lavaan] adds structural-equation fits, both optional. [src: intraclass/cairn/DESIGN.md]
-- Optional engines stay in Suggests, so a plain install leaves only glmmTMB ready to use. [src: intraclass/README.Rmd]
-- The default interval draws Monte-Carlo samples from the parameter covariance on the engine's log scale, so it is boundary-aware by construction. [src: intraclass/cairn/DESIGN.md]
-- Bootstrap and posterior intervals are selectable, and one documented policy states how each interval method treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
-- Ill-posed designs fail loudly through classed error conditions. [src: intraclass/cairn/DESIGN.md]
-- Every estimator traces to a published primary source and agrees with at least two independent types of oracle. [src: intraclass/cairn/DESIGN.md]
-- A standing test matrix pins frequentist point-estimate agreement across the estimand-by-engine grid and checks every documented engine refusal. [src: intraclass/cairn/DESIGN.md]
-- Output never labels an ICC as poor, good, or excellent, and guidance covers which coefficient to report. [src: intraclass/cairn/DESIGN.md]
+The public interface has three functions: `icc()`, `d_study()`, and `choose_icc()`.
+`icc()` fits the model, estimates the coefficient, and computes its interval.
+`d_study()` projects a fitted coefficient to other numbers of raters.
+`choose_icc()` recommends a coefficient for a stated design.
+The results work with `tidy()` and `glance()` from the generics package, so they fit into tables and plots.
+
+Four estimation engines sit behind the `engine` argument of `icc()`: glmmTMB [@glmmTMB], lme4 [@lme4], brms [@brms] for Bayesian fits, and lavaan [@lavaan] for structural-equation fits.
+glmmTMB is the default and the only engine that intraclass imports.
+The other engines are suggested packages, and a user installs them only to use them.
+glmmTMB keeps variance components on a log standard-deviation scale, so a fit at the zero boundary stays finite.
+lme4 fits the same restricted maximum likelihood model, and the tests use it as an independent check on the default.
+
+The default interval simulates draws from the fitted parameter covariance on the log scale of the engine.
+It then transforms the draws back, so each draw keeps the variances positive.
+Near the boundary this interval can fail.
+The error then names an opt-in method that the package ran on the same data and found to give a usable interval.
+Some designs do not identify the model, for example ratings that split into groups with no subject or rater in common.
+Such a design stops with a classed error condition that names the problem.
+
+Every estimator traces to a published primary source.
+The test suite checks each estimator against independent oracles of several types.
+A standing test matrix covers each combination of coefficient and engine.
+It checks that the frequentist engines agree on point estimates and that every documented engine refusal occurs.
+
+The output never labels a coefficient as poor, good, or excellent.
+The guidance covers which coefficient to report and how to read its interval, and the judgment of adequacy stays with the researcher.
 
 # Research impact statement
 
-Word budget: 150
 - CRAN download counts for intraclass since its first release. [src: to gather]
 - Published studies or preprints that cite or use intraclass. [src: to gather]
 - Issues, questions, and feature requests from users outside the maintainer's group. [src: to gather]
@@ -78,14 +109,12 @@ Word budget: 150
 
 # AI usage disclosure
 
-Word budget: 100
-- Generative AI (Claude Code) helped write the software, the documentation, and this paper. [src: maintainer]
-- The maintainer reviewed each milestone and bug fix before it was merged. [src: maintainer]
-- Numerical correctness rests on tests that check each estimator against at least two independent types of oracle. [src: intraclass/cairn/DESIGN.md]
+The author used Claude Code (Anthropic), a generative AI coding tool, to help write the package code, its tests, its documentation, and this paper.
+The author reviewed and approved each change before it was merged.
+Numerical correctness does not rest on that review alone, because the test suite checks each estimator against independent oracles of several types.
 
 # Acknowledgements
 
-Word budget: 50
-- People and funding to acknowledge, as the maintainer names them. [src: maintainer]
+The author received no specific funding for this work.
 
 # References
