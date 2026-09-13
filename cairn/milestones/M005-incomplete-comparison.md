@@ -83,3 +83,18 @@ Evidence gathered 2026-09-13 on branch head 5978fcb, with intraclass 0.1.0 (CRAN
 - AC7: `git diff main...HEAD -- paper/paper.md` changes five sentences and removes one. The irrICC sentence matches the irrICC 1.0 `icc2.nointer.fn` manual ("Model 2 without any subject-rater interaction", `icc2r` inter-rater) and the CSV gap. The agreed and differed sentences match the CSV gaps. The psych divisor sentence matches `incomplete_psych_k` 4.00000 and the psych 2.6.5 `ICC` manual ("means of k raters"). Spearman-Brown on the CSV rows gives k of 4.00 for all three averaged psych values. The intraclass sentence matches `incomplete_intraclass_k_eff` and the intraclass 0.1.0 `ratings_incomplete` manual ("averaging divisor", "harmonic mean"). The CSV rows give 3.27 for all three averaged intraclass values. No changed sentence says a package lacks a feature.
 - AC8: The manual draft-PDF run 34790358122 on branch head f162a24 concluded `success`. Later commits on the branch change only `cairn/`.
 - Consistency gate: `cairn_validate.py` exited 0 with one advisory warning (8 criteria, over the sizing tripwire, as the plan recorded). No principle changed, so `cairn_impact` was skipped. The generic profile names no toolchain checks.
+- Independent review: full three-lens fan-out, because the tier is user-facing. The blame-history and prior-review lenses found nothing, and there are no PR review threads. The diff-bug lens reported D1 to D14, ranked, and none makes a criterion fail. Dispositions are set at the approval gate.
+- D1 (paper.md:71-72): the divisor sentences can read as the cause of every averaged gap, but most of the ICC(k) gap is the ICC(1) gap.
+- D2 (paper.md:71): only ICC2 and ICC2k give `incomplete_psych_k`, and the ICC1/ICC1k and ICC3/ICC3k pairs give 4 only by derivation.
+- D3 (comparison.R:162): k is 4.0000000000000009 and prints `4.00000`, and an exact 4 on another platform would print `4` and break the rerun diff.
+- D4 (paper.md:70): the ICC(1) difference is unexplained, by plan.
+- D5 (paper.md:71): "averaging divisor" is the intraclass manual's term, applied to psych.
+- D6 (paper.md:71-72): the paper does not say that 4 is the total number of raters.
+- D7 (paper.md:72): 3.27 for ICC(k) and ICC(C,k) rests on the manual, not on a results row.
+- D8 (paper.md:69): "incomplete `ratings_incomplete`" repeats the word.
+- D9 (paper.md:67): the irrICC noun phrase is long.
+- D10 (comparison.R:142,145): `psych::ICC(wm_inc)` runs twice.
+- D11 (comparison.R:118-127): the irrICC reshape duplicates `to_wide()`, and the code predates the branch.
+- D12 (comparison-results.csv): `incomplete_psych_k` sits apart from the psych rows, and its name does not parallel `k_eff`.
+- D13 (comparison.R:11-12): the "adapted from the vignette" header may be stale.
+- D14 (paper.md:67): the no-interaction value equals the old interaction value. This is a note, not a defect.
