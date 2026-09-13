@@ -1,6 +1,6 @@
 # M002: A push that changes the paper builds a JOSS draft PDF
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
@@ -32,7 +32,7 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 ## Tasks
 
 - [x] T1: Write `.github/workflows/draft-pdf.yml` from the draft action README (checkout, draft action, upload-artifact), with the `workflow_dispatch` trigger and the `paper/**` and workflow-file path filters.
-- [ ] T2: Push the branch, find or start the run on the head SHA, download the artifact, and run the title check. Update the Architecture line in `cairn/DESIGN.md` and the `verify` slot in `cairn/PROFILE.md` to name the workflow and the manual-run command.
+- [x] T2: Push the branch, find or start the run on the head SHA, download the artifact, and run the title check. Update the Architecture line in `cairn/DESIGN.md` and the `verify` slot in `cairn/PROFILE.md` to name the workflow and the manual-run command.
 
 ## Work log
 
@@ -40,5 +40,11 @@ A push that changes `paper/`, or a manual run, builds the JOSS draft PDF of `pap
 - 2026-09-13: criteria audit (reduced mode, fresh Opus reader) returned 2 findings for AC2. A run on a tracking-only head needs a manual trigger, and the wrapped PDF title needs whitespace squeezing. Both were fixed in the wording above.
 - 2026-09-13: implement started on branch `m002-draft-pdf-workflow`. Question gate skipped because nothing was open.
 - 2026-09-13: T1 done. The workflow follows the action README, with checkout and upload-artifact at `@v7` and the draft action at `@master`.
+- 2026-09-13: T2 push run 34778514375 on `da1e155` concluded success. Manual run 34778562793 on `566c359` concluded success, and its `paper` artifact held `paper.pdf`.
+- 2026-09-13: T2 title check passed with `-raw`, and the title with `XYZ` appended failed. A first FAIL came from a trailing space in my title extraction, not from the PDF.
+- 2026-09-13: T2 note for review: the match comes from the one-line citation block on page 1. The heading copy of the title has margin line number `1` inside it.
+- 2026-09-13: T2 done. DESIGN Architecture and the PROFILE `verify` slot name the workflow and the manual-run command.
+- claim audit: not owed — internal tier
+- 2026-09-13: implement complete, status set to review.
 
 ## Decisions
