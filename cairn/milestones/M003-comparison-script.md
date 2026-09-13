@@ -36,7 +36,7 @@
 ## Tasks
 
 - [x] T1: Reinstall intraclass 0.1.0 from CRAN and confirm that `packageDescription("intraclass")$Repository` is `CRAN`.
-- [ ] T2: Write `analysis/comparison.R`, adapted from `intraclass/vignettes/comparison-with-other-packages.Rmd` (the validation, irrICC, and incomplete-data chunks). Use a hard `stop()` for missing packages, point estimates only, `signif(x, 6)`, and a fixed row order.
+- [x] T2: Write `analysis/comparison.R`, adapted from `intraclass/vignettes/comparison-with-other-packages.Rmd` (the validation, irrICC, and incomplete-data chunks). Use a hard `stop()` for missing packages, point estimates only, `signif(x, 6)`, and a fixed row order.
 - [ ] T3: Run the script, commit the results file, run it again, and confirm `git diff --exit-code`.
 - [ ] T4: Update the three outline bullets from the results file.
 
@@ -47,5 +47,6 @@
 - 2026-09-13: plan gate chose CRAN intraclass 0.1.0 over the GitHub development version, because reviewers can install the same version. Falsified by a comparison figure that differs between 0.1.0 and the development version.
 - 2026-09-13: implement started on branch m003-comparison-script. No question gate, because the plan left no choice open.
 - 2026-09-13: T1 done. The installed intraclass was a local build with no Repository field. `install.packages("intraclass")` from CRAN gave version 0.1.0, Repository CRAN.
+- 2026-09-13: T2 done. The first run stopped because the one-way average term in intraclass 0.1.0 is `ICC(k)`, not `ICC(1,k)`, so the script now stops when a term is not one row. A run with `requireNamespace` masked to fail for each of the four packages in turn exited 1 with that package named.
 
 ## Decisions
