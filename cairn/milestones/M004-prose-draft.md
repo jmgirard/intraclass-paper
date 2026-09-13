@@ -44,7 +44,7 @@
 - [x] T3: Write the AI usage disclosure and Acknowledgements prose, and delete the `Word budget:` lines and `[src:]` markers outside Research impact.
 - [x] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
 - [x] T5: Push the branch and confirm the draft-PDF run on the head SHA.
-- [ ] T6: Fix the review findings triaged fix-now (Review section: F1, F2 through F1, F3, F6 to F11, F14 with H1, F15, F16, F17, F19). Read the package source or manual for each new claim, and add bib entries for Shrout and Fleiss and for Gwet's handbook.
+- [x] T6: Fix the review findings triaged fix-now (Review section: F1, F2 through F1, F3, F6 to F11, F14 with H1, F15, F16, F17, F19). Read the package source or manual for each new claim, and add bib entries for Shrout and Fleiss and for Gwet's handbook.
 - [ ] T7: Re-run the AC1 to AC5 checks on the fixed text, and confirm the draft-PDF run on the new head SHA.
 
 ## Work log
@@ -71,6 +71,7 @@
 - 2026-09-13: draft PDF run 34783143039 on 36a297b (the corrected prose) concluded success. Status set to review.
 - 2026-09-13: review started. The branch was pushed before the approval gate, because AC6 needs a run on the head SHA. The draft-PDF workflow has only push and manual triggers, so no PR checks ran.
 - 2026-09-13: review returned M004 to in-progress (defect return 1). F1 fails AC5: line 66 claims agreement with psych, irr, and irrICC with no limit, but the CSV shows it only on balanced data. At the gate the user chose to fix every proposed fix-now finding. Requested changes are T6 and T7. All six criteria were unticked, because the fixes change the text each one reads.
+- 2026-09-13: T6: review fixes landed. F7, F8, F10, and F17 rest on the intraclass v0.1.0 source (`R/engine-glmmtmb.R`, `R/ci-montecarlo.R`, `R/engine-lavaan.R`, `R/boundary-hint.R`, DESCRIPTION). F10 also rests on the floor at 0 in `theta2r_moment_draws()`. F14 rests on the performance 0.17.1 `icc` manual, and F19 on the irrICC 1.0 `icc2.inter.fn` manual. The Shrout and Fleiss entry matches Crossref, and the Gwet entry matches the irrICC manual. F1 removed the unlimited agreement sentence, and F16 removed the mean-squares sentence. F9 now claims a published definition for each coefficient, F11 says "interval", and F3 uses the outline wording. The CRAN DOIs for intraclass and psych resolve. After the fix: words 1061, 12 citation keys equal the bib keys, and no citeproc warning. The number hits add only the years 1979 and 2014.
 
 ## Decisions
 
