@@ -46,7 +46,7 @@
 - [x] T1: In `analysis/comparison.R`, add the 12 incomplete-data estimate rows and the `incomplete_psych_k` row, and replace the `icc2.inter.fn` rows with `icc2.nointer.fn` rows. Rerun the script and commit the results file.
 - [x] T2: In a separate R session, recompute the 15 values as AC2 states, and compare them to the committed rows. Record the comparison in the work log.
 - [x] T3: Rewrite the State of the field sentences on `ratings_incomplete` and irrICC from the new rows, and remove the "psych reported 6 subjects" sentence. Take each divisor from its results row, and read the psych 2.6.5 `ICC` manual and the intraclass 0.1.0 `icc` manual for the sentence around it (M001 and M004 lessons).
-- [ ] T4: Run the number, citation, word-count, and package-claim checks, fix what they find, and record the number ledger in the work log.
+- [x] T4: Run the number, citation, word-count, and package-claim checks, fix what they find, and record the number ledger in the work log.
 - [ ] T5: Push the branch and confirm the draft-PDF run on the head SHA.
 
 ## Work log
@@ -62,6 +62,8 @@
 - 2026-09-13: T1 done. The script writes the 15 rows and exits 0, and `grep -c 'icc2.inter.fn'` prints 0. `incomplete_psych_k` is 4.00000.
 - 2026-09-13: T2 done. A separate R session used its own matrix reshape and `uniroot()` for the Spearman-Brown k. It matched all 15 committed rows at 6 significant digits.
 - 2026-09-13: T3 done. State of the field now says which of the six coefficients agree and gives the divisors 4 and 3.27. The irrICC sentence names the model without interaction. The divisor wording follows the psych `ICC` manual ("means of k raters") and the intraclass `ratings_incomplete` manual (harmonic mean `k_eff`).
+- 2026-09-13: T4 number ledger. 0.000006 is `irricc_nointer_abs_diff_ICCA1`, 0.000007 is `balanced_max_abs_gap`, and 3.27 is `incomplete_intraclass_k_eff`. The divisor 4 is `incomplete_psych_k`, and 2, 20, and 6 are the incomplete subject and rating counts. 1979, 2014, and 2022 are years, and the other 1s and six 4s are ICC labels and lme4. "Four" and "three" count items their sentences name.
+- 2026-09-13: T4 checks. Agree gaps are 0.000001 for ICC(A,1) and 0 for ICC(C,1). Differ gaps are 0.024 to 0.21. Citation keys equal the bib keys, pandoc gives no citation warning, and the word count is 1128.
 
 ## Decisions
 
