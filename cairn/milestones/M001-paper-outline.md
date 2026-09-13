@@ -48,7 +48,7 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 
 - [x] T1: Write the front matter of `paper/paper.md`: title, tags, sole author with ORCID and affiliation, date, `bibliography: paper.bib`.
 - [x] T2: Outline `# Summary`, `# Statement of need`, and `# State of the field` from the package `DESCRIPTION`, `README.Rmd`, and the comparison article's validation and differentiation sections, citing psych, irr, irrICC, and performance. No numeric results: a bullet that will carry a computed figure names the figure and marks it `[src: to gather]`.
-- [ ] T3: Outline `# Software design` from the package's `cairn/DESIGN.md` (architecture, engine choice, Monte-Carlo boundary-aware intervals, classed errors), citing glmmTMB and lme4.
+- [x] T3: Outline `# Software design` from the package's `cairn/DESIGN.md` (architecture, engine choice, Monte-Carlo boundary-aware intervals, classed errors), citing glmmTMB and lme4.
 - [ ] T4: Outline `# Research impact statement` (kinds of evidence, all `to gather`), `# AI usage disclosure` (Claude Code for software, documentation and paper, and how correctness was checked), `# Acknowledgements`, and an empty `# References`. Set the seven word budgets.
 - [ ] T5: Write `paper/paper.bib` with one entry per cited key, taking each package's citation from its CRAN `citation()` output or reference manual. Run the AC1–AC5 and AC7 commands and summarize their results in one work-log line.
 
@@ -62,6 +62,7 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 - 2026-09-13: implement gate chose the DESCRIPTION-based title, the name Jeffrey M. Girard, today's date to refresh at submission, and four extra citations: intraclass, ten Hove et al. (2022), brms, and lavaan.
 - 2026-09-13: T1 done. Front matter written with the given-names and surname author form.
 - 2026-09-13: T2 done. Summary, Statement of need, and State of the field outlined from the four named sources. The one computed figure, the largest psych or irr gap, is marked to gather.
+- 2026-09-13: T3 done. Software design outlined from the package DESIGN.md, citing glmmTMB, lme4, brms, and lavaan.
 
 ## Decisions
 

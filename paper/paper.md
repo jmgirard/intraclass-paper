@@ -49,3 +49,19 @@ Word budget: 250
 - intraclass's ICC(A,1) reproduces the two-way random agreement coefficient of irrICC. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - A capability matrix contrasts the four packages on incomplete data, multilevel reliability, boundary-aware intervals, fixed or random rater framing, and selection guidance. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
 - psych and irr remain the right tools for balanced, complete designs that need only the classic coefficients. [src: intraclass/vignettes/comparison-with-other-packages.Rmd]
+
+# Software design
+
+Word budget: 350
+- The public surface is `icc()` (fit, estimate, interval), `d_study()` (projection), `choose_icc()` (selection), and tidy S3 methods. [src: intraclass/cairn/DESIGN.md]
+- Four estimation engines sit behind one interface: frequentist, frequentist oracle, Bayesian, and structural-equation. [src: intraclass/cairn/DESIGN.md]
+- glmmTMB [@glmmTMB] is the default engine because it keeps a variance component positive on a log-SD scale, so boundary fits stay finite. [src: intraclass/cairn/DESIGN.md]
+- lme4 [@lme4] is an alternate engine and an independent oracle for the default. [src: intraclass/cairn/DESIGN.md]
+- brms [@brms] adds Bayesian fits and lavaan [@lavaan] adds structural-equation fits, both optional. [src: intraclass/cairn/DESIGN.md]
+- Optional engines stay in Suggests behind an install check, which keeps the default install light. [src: intraclass/cairn/DESIGN.md]
+- The default interval draws Monte-Carlo samples from the parameter covariance on the engine's log scale, so it is boundary-aware by construction. [src: intraclass/cairn/DESIGN.md]
+- Bootstrap and posterior intervals are selectable, and each method documents how it treats a variance at zero. [src: intraclass/cairn/DESIGN.md]
+- Ill-posed designs fail through classed error conditions that name the problem and a remedy. [src: intraclass/cairn/DESIGN.md]
+- Every estimator traces to a published primary source and agrees with at least two independent oracles. [src: intraclass/cairn/DESIGN.md]
+- A test matrix holds point-estimate agreement across engines for every estimand. [src: intraclass/cairn/DESIGN.md]
+- Output never labels an ICC as poor, good, or excellent, and guidance covers which coefficient to report. [src: intraclass/cairn/DESIGN.md]
