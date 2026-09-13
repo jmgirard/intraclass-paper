@@ -1,13 +1,13 @@
 # M003: A committed script produces the comparison figures the paper reports
 
-- **Status:** planned
+- **Status:** in-progress
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
 - **Principles touched:** —
 - **Resolves:** —
 - **Surface tier:** user-facing — the paper publishes its figures, and readers can run it again
-- **Branch/PR:** —
+- **Branch/PR:** m003-comparison-script
 
 ## Goal
 
@@ -35,7 +35,7 @@
 
 ## Tasks
 
-- [ ] T1: Reinstall intraclass 0.1.0 from CRAN and confirm that `packageDescription("intraclass")$Repository` is `CRAN`.
+- [x] T1: Reinstall intraclass 0.1.0 from CRAN and confirm that `packageDescription("intraclass")$Repository` is `CRAN`.
 - [ ] T2: Write `analysis/comparison.R`, adapted from `intraclass/vignettes/comparison-with-other-packages.Rmd` (the validation, irrICC, and incomplete-data chunks). Use a hard `stop()` for missing packages, point estimates only, `signif(x, 6)`, and a fixed row order.
 - [ ] T3: Run the script, commit the results file, run it again, and confirm `git diff --exit-code`.
 - [ ] T4: Update the three outline bullets from the results file.
@@ -45,5 +45,7 @@
 - 2026-09-13: created by /milestone-plan. It absorbs the script half of the candidate row "Draft the text from the package's comparison-with-other-packages article", including the untested irrICC agreement claim (M001 review F4).
 - 2026-09-13: criteria audit (full mode, fresh Opus reader) returned 7 findings. An untracked file passes `git diff`, full-precision values can drift between machines, missing packages were skipped silently, "a CRAN release" had no check, row names were open, the irrICC difference had no sign rule, and a bullet was able to keep its placeholder. All were fixed in the wording above. A finding that psych drops incomplete subjects was rejected: `psych::ICC` used all 6 subjects of `ratings_incomplete` on a local run (psych 2.6.5).
 - 2026-09-13: plan gate chose CRAN intraclass 0.1.0 over the GitHub development version, because reviewers can install the same version. Falsified by a comparison figure that differs between 0.1.0 and the development version.
+- 2026-09-13: implement started on branch m003-comparison-script. No question gate, because the plan left no choice open.
+- 2026-09-13: T1 done. The installed intraclass was a local build with no Repository field. `install.packages("intraclass")` from CRAN gave version 0.1.0, Repository CRAN.
 
 ## Decisions
