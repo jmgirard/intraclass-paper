@@ -1,13 +1,13 @@
 # M001: The paper has a sourced outline in JOSS's required structure
 
-- **Status:** planned
+- **Status:** in-progress
 - **Priority:** high
 - **Depends on:** —
 - **Driving RR:** —
 - **Principles touched:** —
 - **Resolves:** —
 - **Surface tier:** user-facing — the outline is the first form of the public paper
-- **Branch/PR:** —
+- **Branch/PR:** m001-paper-outline
 
 ## Goal
 
@@ -46,7 +46,7 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 
 ## Tasks
 
-- [ ] T1: Write the front matter of `paper/paper.md`: title, tags, sole author with ORCID and affiliation, date, `bibliography: paper.bib`.
+- [x] T1: Write the front matter of `paper/paper.md`: title, tags, sole author with ORCID and affiliation, date, `bibliography: paper.bib`.
 - [ ] T2: Outline `# Summary`, `# Statement of need`, and `# State of the field` from the package `DESCRIPTION`, `README.Rmd`, and the comparison article's validation and differentiation sections, citing psych, irr, irrICC, and performance. No numeric results: a bullet that will carry a computed figure names the figure and marks it `[src: to gather]`.
 - [ ] T3: Outline `# Software design` from the package's `cairn/DESIGN.md` (architecture, engine choice, Monte-Carlo boundary-aware intervals, classed errors), citing glmmTMB and lme4.
 - [ ] T4: Outline `# Research impact statement` (kinds of evidence, all `to gather`), `# AI usage disclosure` (Claude Code for software, documentation and paper, and how correctness was checked), `# Acknowledgements`, and an empty `# References`. Set the seven word budgets.
@@ -59,6 +59,8 @@ BODY below means the output of `awk 'f>=2{print} /^---$/&&f<2{f++}' paper/paper.
 - 2026-09-13: re-audit of the revised criteria found trailing-dot citation keys, empty sections passing, unchecked `intraclass/` paths, prefix key matches, and CRLF risk. All fixed in the criteria. JOSS's AI section (observed 2026-09-13) also asks how correctness was checked, now in AC6. `performance` added to AC7 because the seed article names it.
 - 2026-09-13: plan gate chose outline-only over adding the draft-PDF workflow, by the maintainer's choice. Falsified if outline errors surface only at render time during drafting.
 - 2026-09-13: plan gate chose listing research-impact evidence as "to gather" over gathering it now, because gathering belongs to submission timing. Falsified if the other sections depend on that evidence.
+- 2026-09-13: implement gate chose the DESCRIPTION-based title, the name Jeffrey M. Girard, today's date to refresh at submission, and four extra citations: intraclass, ten Hove et al. (2022), brms, and lavaan.
+- 2026-09-13: T1 done. Front matter written with the given-names and surname author form.
 
 ## Decisions
 
