@@ -43,7 +43,7 @@
 - [x] T2: Turn the outline bullets of Summary, Statement of need, State of the field, and Software design into prose. Take each figure from `analysis/comparison-results.csv`, and run any function whose behavior a sentence states (M001 lesson).
 - [x] T3: Write the AI usage disclosure and Acknowledgements prose, and delete the `Word budget:` lines and `[src:]` markers outside Research impact.
 - [x] T4: Run the word count, the number greps, and the citation key comparison, and fix what they find. Record the number classification for review in the work log.
-- [ ] T5: Push the branch and confirm the draft-PDF run on the head SHA.
+- [x] T5: Push the branch and confirm the draft-PDF run on the head SHA.
 
 ## Work log
 
@@ -63,6 +63,7 @@
 - 2026-09-13: T4: words 1052 (pandoc plain). AC1 awk/grep empty, and no `- ` line in Acknowledgements. 10 citation keys equal the bib keys, no citeproc warning, and a planted `@lavaanX` key did raise one. The number grep flagged "Word budget: 150" in Research impact (AC3 covers that section), so that line was removed, and "agree with these packages" was narrowed to psych, irr, and irrICC, because performance has no comparison value.
 - 2026-09-13: T4 number ledger (below front matter): 2022 year (@tenhove2022). 2 = incomplete_complete_case_subjects. 20 = incomplete_intraclass_ratings. 6 (line with 20) = incomplete_intraclass_subjects. 6 (psych sentence) = incomplete_psych_subjects. 0.000007 = balanced_max_abs_gap 0.00000715543 at one significant digit. 0.000006 = irricc_abs_diff_ICCA1 0.00000625078 at one significant digit. Each 1 is in an ICC(1), ICC(A,1), or ICC(C,1) label. Each 4 is the lme4 digit (prose, `@lme4`). "three" counts `icc()`, `d_study()`, `choose_icc()` named in its sentence. "Four" counts glmmTMB, lme4, brms, lavaan named in its sentence.
 - 2026-09-13: T4 AC5 ledger: irr listwise omission (both sections) and agreement/consistency for single/average ratings = irr 0.85 manual `icc` Details and arguments. psych Shrout and Fleiss ICCs with confidence limits, `lmer()` default that handles missing data = psych 2.6.5 manual `ICC`. psych used 6 subjects = CSV. irrICC inter- and intra-rater ICCs from Gwet's handbook under ANOVA models = irrICC 1.0 package description and `icc2.inter.fn`. performance ICC also called variance partition coefficient from a fitted mixed model = performance 0.17.1 manual `icc`. Agreement figures = CSV. "psych and irr remain direct choices" for balanced complete classical designs = the irr and psych manuals above.
+- 2026-09-13: T5: pushed 7e581a9. Draft PDF run 34782970762 on that SHA concluded success, and its paper artifact is a 3-page PDF.
 
 ## Decisions
 
