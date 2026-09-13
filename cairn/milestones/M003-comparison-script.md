@@ -54,6 +54,8 @@
 - 2026-09-13: draft-PDF run 34779674826 on the audit fix passed. Status set to review.
 - 2026-09-13: review found AC1 to AC4 passing, the validator clean, and 7 findings from the diff reviewer. At the gate, the maintainer chose fixes for F2, F3, F5, and F6, and a follow-up row for F1, F4, and F7.
 - 2026-09-13: amendment return: AC3 — "with non-integer values written to 6 significant digits, trailing zeros kept, and integer counts written as whole numbers". The results file changed in one row, so the AC1 and AC3 evidence must run again at re-review. Status set to in-progress.
+- 2026-09-13: implement resumed on the branch for the AC3 amendment. origin/main is already in the branch.
+- 2026-09-13: re-audit: AC3 (full) — two findings. "Values" also covers the version and repository rows, so `version_irr` 0.85 fails the 6-digit rule. "Integer counts" leaves whole-number results that are not counts unbound. The amendment also widens AC3, because it adds the trailing-zero promise.
 
 ## Decisions
 
