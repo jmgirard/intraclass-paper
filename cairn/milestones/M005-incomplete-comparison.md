@@ -67,6 +67,8 @@
 - 2026-09-13: T5 done. Branch pushed. Draft-PDF run 34789943136 on 1e92e67 concluded `success`. Later tracking-only commits do not change `paper/`.
 - 2026-09-13: claim audit: 8 claims read, 1 corrected — paper/paper.md, analysis/comparison.R. The fresh Opus reader found all 8 true but called "divides these coefficients by 3.27" loose. The two divisor sentences now use the manual's term "averaging divisor", and the reader's re-read found them true.
 - 2026-09-13: draft-PDF run 34790031099 on 7498aaf, the last commit that changes `paper/`, concluded `success`. The word count is now 1129. Status set to review.
+- 2026-09-13: review gate chose to fix D1, D3, and D8 on the branch and reject the other findings with reasons (Review section).
+- step-7 approval: m005-incomplete-comparison approved for merge
 
 ## Decisions
 
@@ -98,3 +100,5 @@ Evidence gathered 2026-09-13 on branch head 5978fcb, with intraclass 0.1.0 (CRAN
 - D12 (comparison-results.csv): `incomplete_psych_k` sits apart from the psych rows, and its name does not parallel `k_eff`.
 - D13 (comparison.R:11-12): the "adapted from the vignette" header may be stale.
 - D14 (paper.md:67): the no-interaction value equals the old interaction value. This is a note, not a defect.
+- Gate triage 2026-09-13: D1 fix now. The paper adds "For ICC(A,k) and ICC(C,k), whose single-rating values agree, the divisor accounts for the whole gap." Spearman-Brown with 4 and with 3.27273 on psych's single values gives gaps of 0.0497111 and 0.0241762, against actual gaps of 0.049712 and 0.0241762. D3 fix now: the script rounds k to 6 places, so the row reads `4`. D8 fix now: the repeated "incomplete" is removed. D2 and D7 rejected, because the manuals and the committed rows support the claims. D4 rejected, because the plan bars a cause for the ICC(1) gap. D5, D6, D9, and D12 rejected as wording or ordering choices. D10 rejected as a duplicate call with identical results. D11 rejected as predating the branch. D13 rejected, because the script is still adapted from those vignette chunks. D14 noted.
+- Re-verification after fixes on 25a10e5: the script reran with no diff, and the independent session matched all 15 rows (`incomplete_psych_k` now `4`). The printed divisor 4 still equals the rounded row. The number and word greps give the same ledger as AC5, and citations give no warning. The word count is 1143. The draft-PDF push run 34793849427 on 25a10e5 concluded `success`. The added sentence names only ICC(A,k) and ICC(C,k) and gives no cause for ICC(1).
