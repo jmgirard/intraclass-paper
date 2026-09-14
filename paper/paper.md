@@ -73,14 +73,13 @@ intraclass sets that divisor to 3.27, the harmonic mean of the number of ratings
 For ICC(A,k) and ICC(C,k), whose single-rating values agree, the divisor accounts for the whole gap.
 
 intraclass brings together mixed-model estimation for incomplete and multilevel designs, intervals that respect the zero boundary, and guidance on which coefficient to report.
-These parts share an interface, a data frame with one rating per row.
 intraclass is a separate package because each related package has a different aim or design.
 psych is a general-purpose toolbox first developed for personality, psychometric theory, and experimental psychology.
-Its `ICC()` takes a table with a column for each rater, unlike the data frame that intraclass takes.
-Its `mlr()` finds reliability for multilevel data such as items over time nested within subjects.
-intraclass instead computes interrater ICCs for subjects rated by raters, with an optional cluster column for subjects nested in clusters.
+Its `ICC()` takes ratings with a column for each rater, but `icc()` in intraclass takes a data frame with one rating per row.
+The psych `mlr()` finds reliability for multilevel data such as items over time nested within subjects.
+The multilevel ICC in intraclass is for subjects rated by raters, with a cluster column that names each subject's cluster.
 irr collects coefficients of interrater reliability and agreement for quantitative, ordinal, and nominal data, and it depends only on lpSolve.
-intraclass depends on glmmTMB [@glmmTMB], a package for mixed models that irr does not depend on.
+intraclass imports glmmTMB [@glmmTMB], a package for mixed models that irr does not depend on.
 irrICC provides a separate function for each analysis-of-variance model that it covers, but a single `icc()` call in intraclass takes the design as arguments.
 performance measures the quality of many kinds of regression models, and its ICC is among those measures.
 In intraclass the ICC is the purpose of the package, and `icc()` fits the model from the rating design that the user states.
