@@ -48,7 +48,7 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 ## Tasks
 
 - [x] T1: Read the reference manuals of psych 2.6.5, irr 0.85, irrICC 1.0, and performance 0.17.1 and the intraclass v0.1.0 source. Find the facts that each reason rests on, and log the source of each fact.
-- [ ] T2: Write the justification into State of the field, near `paper/paper.md:75-76`. When a new citation is needed, add its entry to `paper/paper.bib`.
+- [x] T2: Write the justification into State of the field, near `paper/paper.md:75-76`. When a new citation is needed, add its entry to `paper/paper.bib`.
 - [ ] T3: A fresh-context reader audits every added line against AC1, AC2, and AC3. Fix what it finds.
 - [ ] T4: Run the word count and the citation check, push, and run the draft-PDF workflow.
 
@@ -60,7 +60,8 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 - 2026-09-13: plan gate chose a reason for all four packages over psych and irr only. The JOSS criterion covers every related tool that the section names. Falsified by: a JOSS reviewer or guide text limits the justification to the closest alternatives.
 - 2026-09-13: plan gate chose limit claims from manual text or existing results rows over new comparison-script rows. Most reasons can be stated as what each package does. Falsified by: a reason needs a limit that no manual states and no existing row shows.
 - 2026-09-13: implement started on branch m006-why-new-package. No implementation choice was open, so the question gate was skipped.
-- 2026-09-13: T1 sources. psych 2.6.5: DESCRIPTION (general purpose toolbox for personality, psychometric theory, and experimental psychology) and `ICC` (x is a matrix or data frame of ratings, rows subjects and columns raters). irr 0.85: DESCRIPTION (Title, data types, Depends lpSolve, no Imports) and `icc` (n*m matrix). irrICC 1.0: help titles (coefficients and mean squares under ANOVA models of Gwet 2014). performance 0.17.1: DESCRIPTION (model-quality measures for many regression models) and `icc` (model argument is a fitted mixed model). intraclass v0.1.0: DESCRIPTION Imports glmmTMB. Its `icc` Rd says data has one rating per row and a `cluster` column gives the multilevel ICC.
+- 2026-09-13: T1 sources. psych 2.6.5: DESCRIPTION (general purpose toolbox for personality, psychometric theory, and experimental psychology). psych `ICC`: x is a matrix or data frame of ratings, rows subjects and columns raters. irr 0.85: DESCRIPTION (Title, data types, Depends lpSolve, no Imports) and `icc` (n*m matrix). irrICC 1.0: help titles (coefficients and mean squares under ANOVA models of Gwet 2014). performance 0.17.1: DESCRIPTION (model-quality measures for many regression models) and `icc` (model argument is a fitted mixed model). intraclass v0.1.0: DESCRIPTION Imports glmmTMB. Its `icc` Rd says data has one rating per row and a `cluster` column gives the multilevel ICC.
+- 2026-09-13: T2 added an 8-line paragraph after the `ratings_incomplete` paragraph of State of the field. No new citation was needed. The paper is 1292 words by `pandoc -t plain`.
 
 ## Decisions
 
