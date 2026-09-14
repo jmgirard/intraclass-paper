@@ -23,18 +23,18 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 
 ## Acceptance criteria
 
-- [ ] AC1: For each of psych, irr, irrICC, and performance, the State of the field section of `paper/paper.md` has a sentence that names the package. That sentence or the next sentence gives a reason that intraclass is a separate package and not an addition to that package. A reason is a stated difference in scope, design, or dependencies.
-- [ ] AC2: The added lines are the lines that `git diff main...HEAD -- paper/paper.md` shows as added. An added line can name or refer to psych, irr, irrICC, or performance. It then states only facts about that package from one of two sources. The sources are `analysis/comparison-results.csv` at the branch head and the package's own reference manual: psych 2.6.5, irr 0.85, irrICC 1.0, performance 0.17.1. If a line says that one of these packages lacks a feature, the limit must come from manual text or a results-file row. Each statement about intraclass in the added lines matches the intraclass v0.1.0 source or documentation. No added line states contact with, a request to, or a reply from a maintainer of those packages.
-- [ ] AC3: Two searches over the AC2 added lines find their numbers. The digit search is `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'`. The word search is `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'`. Each number is one of these kinds:
+- [x] AC1: For each of psych, irr, irrICC, and performance, the State of the field section of `paper/paper.md` has a sentence that names the package. That sentence or the next sentence gives a reason that intraclass is a separate package and not an addition to that package. A reason is a stated difference in scope, design, or dependencies.
+- [x] AC2: The added lines are the lines that `git diff main...HEAD -- paper/paper.md` shows as added. An added line can name or refer to psych, irr, irrICC, or performance. It then states only facts about that package from one of two sources. The sources are `analysis/comparison-results.csv` at the branch head and the package's own reference manual: psych 2.6.5, irr 0.85, irrICC 1.0, performance 0.17.1. If a line says that one of these packages lacks a feature, the limit must come from manual text or a results-file row. Each statement about intraclass in the added lines matches the intraclass v0.1.0 source or documentation. No added line states contact with, a request to, or a reply from a maintainer of those packages.
+- [x] AC3: Two searches over the AC2 added lines find their numbers. The digit search is `grep -o -E '[<-]?[0-9][0-9.,]*(e-?[0-9]+)?'`. The word search is `grep -o -i -w -E 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty'`. Each number is one of these kinds:
   1. a value in `analysis/comparison-results.csv` at the rounding the paper shows
   2. a year or a version number
   3. part of a coefficient label such as ICC(A,1)
   4. a count of items that the same line names
   5. the digit in the package name lme4
   6. the word "one" used as a pronoun, not as a count
-- [ ] AC4: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750.
-- [ ] AC5: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` exits with status 0 and prints no citation-not-found warning.
-- [ ] AC6: A run of the draft-PDF workflow (`.github/workflows/draft-pdf.yml`) on the milestone branch head SHA concludes `success`.
+- [x] AC4: `pandoc paper/paper.md -t plain | wc -w` reports between 750 and 1750.
+- [x] AC5: The set of keys from `grep -o -E '@[A-Za-z0-9_:-]+' paper/paper.md` equals the set of entry keys in `paper/paper.bib`. `pandoc paper/paper.md --citeproc --bibliography paper/paper.bib -o /dev/null` exits with status 0 and prints no citation-not-found warning.
+- [x] AC6: A run of the draft-PDF workflow (`.github/workflows/draft-pdf.yml`) on the milestone branch head SHA concludes `success`.
 
 ## Coverage
 
@@ -70,3 +70,13 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 ## Decisions
 
 ## Review
+
+Evidence gathered 2026-09-13 on branch head 556d1e6, with psych 2.6.5, irr 0.85, irrICC 1.0, performance 0.17.1, and intraclass 0.1.0 installed. These match the versions the criteria name.
+
+- AC1: Line 2 of the added paragraph names psych. Line 3 gives the reason: a column per rater against one rating per row. Line 5 names irr, and line 6 gives the reason: lpSolve only against glmmTMB. Line 7 names irrICC and gives the reason: analysis-of-variance models against mixed models by default. Line 8 names performance. Lines 8 and 9 give the reason: a model the user fitted against a model fitted from the stated design.
+- AC2: `git diff main...HEAD -- paper/paper.md` shows 9 added lines. Each package fact was read in the installed manual. psych DESCRIPTION says "general purpose toolbox developed originally for personality, psychometric theory and experimental psychology". The psych `ICC` Details lay data out in rows (subjects) and columns (raters). irr DESCRIPTION lists the three data types, Depends lpSolve, and has no Imports. Every irrICC help title names an ANOVA model. performance DESCRIPTION says "measures to assess model quality" for "a large variety of regression models". Its `icc` argument `model` is a fitted mixed effects model. The intraclass 0.1.0 DESCRIPTION imports glmmTMB and names linear mixed models. Its `icc` Rd says `data` has one rating per row, `engine` defaults to glmmTMB, and a `cluster` column switches on the multilevel ICC. No added line says a package lacks a feature. The irr line says glmmTMB is a dependency irr does not have, and the irr DESCRIPTION shows this. No added line matches contact, maintainer, request, or reply.
+- AC3: The digit search finds no match in the 9 added lines. The word search finds one match, "one" in "one rating per row" on line 3. It counts ratings, an item that the same line names (kind 4).
+- AC4: `pandoc paper/paper.md -t plain | wc -w` reports 1299.
+- AC5: The 12 `@` keys in `paper/paper.md` equal the 12 entry keys in `paper/paper.bib`. `pandoc --citeproc` exited 0 and printed only the output-format warning, with no citation warning. A planted `@nokey` printed "citation nokey not found".
+- AC6: The manual draft-PDF run 34796922107 on branch head 556d1e6 concluded `success`. Later review commits on the branch change only `cairn/`.
+- Consistency gate: `cairn_validate.py` exited 0 with all checks passed. No principle changed, so `cairn_impact` was skipped. The generic profile names no toolchain checks.
