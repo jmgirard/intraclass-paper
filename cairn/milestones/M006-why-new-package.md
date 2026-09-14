@@ -80,3 +80,21 @@ Evidence gathered 2026-09-13 on branch head 556d1e6, with psych 2.6.5, irr 0.85,
 - AC5: The 12 `@` keys in `paper/paper.md` equal the 12 entry keys in `paper/paper.bib`. `pandoc --citeproc` exited 0 and printed only the output-format warning, with no citation warning. A planted `@nokey` printed "citation nokey not found".
 - AC6: The manual draft-PDF run 34796922107 on branch head 556d1e6 concluded `success`. Later review commits on the branch change only `cairn/`.
 - Consistency gate: `cairn_validate.py` exited 0 with all checks passed. No principle changed, so `cairn_impact` was skipped. The generic profile names no toolchain checks.
+- Independent review: full three-lens fan-out, because the tier is user-facing. No finding shows a criterion failing. There are no PR review threads. Dispositions are set at the approval gate.
+- D1 (paper.md:77-78): the psych reason is only wide against long data, but psych 2.6.5 exports `mlr()` and `multilevel.reliability()`, which take long data and compute multilevel reliability.
+- D2 (paper.md:75-83): the lines state differences but not why a difference rules out a contribution, for example a new dependency or a changed interface.
+- D3 (paper.md:75-85): the strongest reasons are in the next paragraph (line 85), which is not tied back to the build-vs-contribute case.
+- D4 (paper.md:82): repeats line 63, that performance works from a model the user fitted.
+- D5 (paper.md:81): repeats line 61, that irrICC works under analysis-of-variance models.
+- D6 (paper.md:80): glmmTMB is named without a citation, and lines 96-97 repeat that intraclass imports it.
+- D7 (AC3): "one rating per row" passes only under kind 4, and a strict audit can read the criterion otherwise.
+- D8 (paper.md:81): "by default ... with mixed models" holds for the default engine, and the lavaan engine fits structural-equation models.
+- D9 (paper.md:75): "these packages" points back to lines 57-63, two paragraphs earlier.
+- D10 (paper.md:79): "depends only on lpSolve" rests on DESCRIPTION metadata, not help-page text.
+- D11 (paper.md:79): the irr sentence does not connect irr's scope to its listwise deletion, the ICC difference the paper reports.
+- B1 (paper.md:76): the reviewer asked whether "first developed for" adds history beyond the source. The psych DESCRIPTION says "developed originally for", so the claim is supported.
+- B2 (paper.md:82): "many kinds of regression models" sits next to a breadth claim that M004 cut. The performance DESCRIPTION says "a large variety of regression models", so the claim is supported.
+- B3 (paper.md:75-87): the new paragraph and the M004 closing paragraph both argue how intraclass differs, which reads as two conclusions.
+- P1 (M004 F4): the paragraph is the follow-up that F4 asked for. Noted.
+- P2 (M004 F14/H1): the irr dependency line is close to a lack claim, and the irr DESCRIPTION supports it. Noted.
+- P3 (M004 AC5): the new package claims need a manual audit. T3 and the AC2 evidence above did this audit. Noted.
