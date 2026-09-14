@@ -66,6 +66,7 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 - 2026-09-13: claim audit: 13 claims read, 1 corrected (paper/paper.md). This was run in the same T3 reader pass.
 - 2026-09-13: T4 results. `pandoc -t plain` counts 1299 words. The citation key sets are equal, and `pandoc --citeproc` exits 0 with no citation warning. Draft-PDF run 34795519804 on d631aae concluded success, and the PDF contains the new paragraph. The completion commit changes only `cairn/`, so it starts no workflow run. Review must start a run by hand on the final head for AC6.
 - 2026-09-13: all tasks done, status set to review.
+- 2026-09-13: step-7 approval: m006-why-new-package approved for merge
 
 ## Decisions
 
