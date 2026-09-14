@@ -49,7 +49,7 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 
 - [x] T1: Read the reference manuals of psych 2.6.5, irr 0.85, irrICC 1.0, and performance 0.17.1 and the intraclass v0.1.0 source. Find the facts that each reason rests on, and log the source of each fact.
 - [x] T2: Write the justification into State of the field, near `paper/paper.md:75-76`. When a new citation is needed, add its entry to `paper/paper.bib`.
-- [ ] T3: A fresh-context reader audits every added line against AC1, AC2, and AC3. Fix what it finds.
+- [x] T3: A fresh-context reader audits every added line against AC1, AC2, and AC3. Fix what it finds.
 - [ ] T4: Run the word count and the citation check, push, and run the draft-PDF workflow.
 
 ## Work log
@@ -62,6 +62,8 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 - 2026-09-13: implement started on branch m006-why-new-package. No implementation choice was open, so the question gate was skipped.
 - 2026-09-13: T1 sources. psych 2.6.5: DESCRIPTION (general purpose toolbox for personality, psychometric theory, and experimental psychology). psych `ICC`: x is a matrix or data frame of ratings, rows subjects and columns raters. irr 0.85: DESCRIPTION (Title, data types, Depends lpSolve, no Imports) and `icc` (n*m matrix). irrICC 1.0: help titles (coefficients and mean squares under ANOVA models of Gwet 2014). performance 0.17.1: DESCRIPTION (model-quality measures for many regression models) and `icc` (model argument is a fitted mixed model). intraclass v0.1.0: DESCRIPTION Imports glmmTMB. Its `icc` Rd says data has one rating per row and a `cluster` column gives the multilevel ICC.
 - 2026-09-13: T2 added an 8-line paragraph after the `ratings_incomplete` paragraph of State of the field. No new citation was needed. The paper is 1292 words by `pandoc -t plain`.
+- 2026-09-13: T3 fresh [O] reader audited the added lines against AC1 to AC3. It found one overstated claim: only the default engine was said to need glmmTMB, but intraclass imports it. The line was fixed. Advisory wording was also applied: the cluster sentence, "by default" for mixed models, and a scope clause for performance, split into two lines. The same reader re-read the 4 changed claims once, and all are supported. The paper is 1299 words.
+- 2026-09-13: claim audit: 13 claims read, 1 corrected (paper/paper.md). This was run in the same T3 reader pass.
 
 ## Decisions
 

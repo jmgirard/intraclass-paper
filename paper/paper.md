@@ -75,11 +75,12 @@ For ICC(A,k) and ICC(C,k), whose single-rating values agree, the divisor account
 intraclass is a separate package because its design differs from each of these packages.
 psych is a general-purpose toolbox first developed for personality, psychometric theory, and experimental psychology.
 Its `ICC()` takes a table of ratings with a column for each rater, but intraclass takes a data frame with one rating per row.
-An optional cluster column in that data frame gives intraclass a multilevel design.
+With an optional cluster column in that data frame, intraclass fits a multilevel ICC.
 irr collects coefficients of interrater reliability and agreement for quantitative, ordinal, and nominal data, and it depends only on lpSolve.
-The default engine of intraclass needs glmmTMB, a package for mixed models, so that engine adds a dependency that irr does not have.
-irrICC computes its coefficients under analysis-of-variance models, but intraclass estimates the variance components with mixed models.
-Unlike performance, which starts from a model that the user fitted, `icc()` in intraclass fits the model from the rating design that the user states.
+intraclass imports glmmTMB, a package for mixed models, which is a dependency that irr does not have.
+irrICC computes its coefficients under analysis-of-variance models, but intraclass by default estimates the variance components with mixed models.
+performance computes model-quality measures for many kinds of regression models, and its `icc()` starts from a model that the user fitted.
+In intraclass, `icc()` fits the model from the rating design that the user states.
 
 intraclass brings together mixed-model estimation for incomplete and multilevel designs, intervals that respect the zero boundary, and guidance on which coefficient to report.
 For a balanced, complete design that needs only the classical coefficients, psych and irr remain direct choices.
