@@ -160,7 +160,9 @@ for (pkg in c("psych", "intraclass")) {
 # Spearman-Brown formula ICC2k = k ICC2 / (1 + (k - 1) ICC2).
 icc2 <- psych_inc[["ICC2"]]
 icc2k <- psych_inc[["ICC2k"]]
-add("incomplete_psych_k", icc2k * (1 - icc2) / (icc2 * (1 - icc2k)))
+# Rounding keeps floating-point residue from changing how a whole k is written.
+add("incomplete_psych_k",
+    round(icc2k * (1 - icc2) / (icc2 * (1 - icc2k)), 6))
 
 # Write --------------------------------------------------------------------------
 
