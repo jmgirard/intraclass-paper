@@ -7,7 +7,7 @@ _Last hygiene check: 2026-09-13 (M005 archived, M002 row pruned, one lesson adde
 
 | ID | Title | Status | Depends on | Priority | File/Archive |
 |---|---|---|---|---|---|
-| M006 | State of the field says why intraclass is a new package | in-progress | — | normal | milestones/M006-why-new-package.md |
+| M006 | State of the field says why intraclass is a new package | review | — | normal | milestones/M006-why-new-package.md |
 | M005 | The paper's comparison with psych and irrICC rests on script rows for incomplete data and the no-interaction model | done | M004 | normal | milestones/archive/M005-incomplete-comparison.md |
 | M004 | The paper is drafted as prose within JOSS's length limit | done | M002, M003 | normal | milestones/archive/M004-prose-draft.md |
 | M003 | A committed script produces the comparison figures the paper reports | done | — | normal | milestones/archive/M003-comparison-script.md |

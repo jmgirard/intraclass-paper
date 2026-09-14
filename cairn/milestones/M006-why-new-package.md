@@ -2,7 +2,7 @@
      section ownership". A phase skill never rewrites another phase's section. -->
 # M006: State of the field says why intraclass is a new package
 
-- **Status:** in-progress
+- **Status:** review
 - **Priority:** normal
 - **Depends on:** —
 - **Driving RR:** —
@@ -50,7 +50,7 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 - [x] T1: Read the reference manuals of psych 2.6.5, irr 0.85, irrICC 1.0, and performance 0.17.1 and the intraclass v0.1.0 source. Find the facts that each reason rests on, and log the source of each fact.
 - [x] T2: Write the justification into State of the field, near `paper/paper.md:75-76`. When a new citation is needed, add its entry to `paper/paper.bib`.
 - [x] T3: A fresh-context reader audits every added line against AC1, AC2, and AC3. Fix what it finds.
-- [ ] T4: Run the word count and the citation check, push, and run the draft-PDF workflow.
+- [x] T4: Run the word count and the citation check, push, and run the draft-PDF workflow.
 
 ## Work log
 
@@ -64,6 +64,8 @@ The State of the field section of `paper/paper.md` says why intraclass is a sepa
 - 2026-09-13: T2 added an 8-line paragraph after the `ratings_incomplete` paragraph of State of the field. No new citation was needed. The paper is 1292 words by `pandoc -t plain`.
 - 2026-09-13: T3 fresh [O] reader audited the added lines against AC1 to AC3. It found one overstated claim: only the default engine was said to need glmmTMB, but intraclass imports it. The line was fixed. Advisory wording was also applied: the cluster sentence, "by default" for mixed models, and a scope clause for performance, split into two lines. The same reader re-read the 4 changed claims once, and all are supported. The paper is 1299 words.
 - 2026-09-13: claim audit: 13 claims read, 1 corrected (paper/paper.md). This was run in the same T3 reader pass.
+- 2026-09-13: T4 results. `pandoc -t plain` counts 1299 words. The citation key sets are equal, and `pandoc --citeproc` exits 0 with no citation warning. Draft-PDF run 34795519804 on d631aae concluded success, and the PDF contains the new paragraph. The completion commit changes only `cairn/`, so it starts no workflow run. Review must start a run by hand on the final head for AC6.
+- 2026-09-13: all tasks done, status set to review.
 
 ## Decisions
 
