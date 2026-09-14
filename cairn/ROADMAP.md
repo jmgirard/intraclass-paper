@@ -7,7 +7,7 @@ _Last hygiene check: 2026-09-13 (M004 archived, M001 row pruned, M003 gap-bound 
 
 | ID | Title | Status | Depends on | Priority | File/Archive |
 |---|---|---|---|---|---|
-| M005 | The paper's comparison with psych and irrICC rests on script rows for incomplete data and the no-interaction model | planned | M004 | normal | milestones/M005-incomplete-comparison.md |
+| M005 | The paper's comparison with psych and irrICC rests on script rows for incomplete data and the no-interaction model | review | M004 | normal | milestones/M005-incomplete-comparison.md |
 | M004 | The paper is drafted as prose within JOSS's length limit | done | M002, M003 | normal | milestones/archive/M004-prose-draft.md |
 | M003 | A committed script produces the comparison figures the paper reports | done | — | normal | milestones/archive/M003-comparison-script.md |
 | M002 | A push that changes the paper builds a JOSS draft PDF | done | — | normal | milestones/archive/M002-draft-pdf-workflow.md |
